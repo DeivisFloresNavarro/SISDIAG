@@ -94,10 +94,12 @@
     <Compile Include="ActivarEmpleadosSteps.cs" />
     <Compile Include="ActivarUsuario.feature.cs" />
     <Compile Include="ActivarUsuarioSteps.cs" />
+    <Compile Include="ActivarUsuarioVerdaderoSteps.cs" />
     <Compile Include="ActualizarEmpleado.feature.cs" />
     <Compile Include="ActualizarEmpleadoSteps.cs" />
     <Compile Include="ActualizarPaciente.feature.cs" />
     <Compile Include="ActualizarPacienteSteps.cs" />
+    <Compile Include="ActualizarUsuarioSteps.cs" />
     <Compile Include="BuscarEmpleadoSteps.cs" />
     <Compile Include="BuscarPaciente.feature.cs" />
     <Compile Include="BuscarPacienteSteps.cs" />
@@ -127,8 +129,10 @@
   <ItemGroup>
     <None Include="ActivarEmpleados.feature" />
     <None Include="ActivarUsuario.feature" />
+    <None Include="ActivarUsuarioVerdadero.feature" />
     <None Include="ActualizarEmpleado.feature" />
     <None Include="ActualizarPaciente.feature" />
+    <None Include="ActualizarUsuario.feature" />
     <None Include="BuscarEmpleado.feature" />
     <None Include="BuscarPaciente.feature" />
     <None Include="BuscarUsuario.feature" />

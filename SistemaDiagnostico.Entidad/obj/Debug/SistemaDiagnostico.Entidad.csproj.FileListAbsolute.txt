@@ -46,3 +46,9 @@ D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagn
 D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagnostico.Entidad.dll
 D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagnostico.Entidad.pdb
 D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagnostico.Entidad.csprojAssemblyReference.cache
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.Entidad\bin\Debug\SistemaDiagnostico.Entidad.dll
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.Entidad\bin\Debug\SistemaDiagnostico.Entidad.pdb
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagnostico.Entidad.csprojAssemblyReference.cache
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagnostico.Entidad.csproj.CoreCompileInputs.cache
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagnostico.Entidad.dll
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.Entidad\obj\Debug\SistemaDiagnostico.Entidad.pdb
