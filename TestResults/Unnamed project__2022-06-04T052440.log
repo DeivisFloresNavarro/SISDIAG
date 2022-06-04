@@ -1,0 +1,108 @@
+﻿2022-06-04T05:24:40.5929793-05:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2022-06-04T05:24:40.5929793-05:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.9.31 in Framework clr40 in x86 mode execution started
+2022-06-04T05:24:40.5929793-05:00;VSTestExecutionThread;Info;TestAdapter Location: D:\Proyecto\SistemaDiagnostico\packages\SpecRun.Runner.3.9.31\tools\net461\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2022-06-04T05:24:40.5939764-05:00;VSTestExecutionThread;Info;Current UserName: 'Usuario', MachineName: 'DESKTOP-839CFT0'
+2022-06-04T05:24:40.6309466-05:00;VSTestExecutionThread;Info;SpecRun: running tests in D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T05:24:40.6309466-05:00;VSTestExecutionThread;Info;Output folder configured to "D:\Proyecto\SistemaDiagnostico\TestResults" (default)
+2022-06-04T05:24:40.6309466-05:00;VSTestExecutionThread;Info;Profile: 
+2022-06-04T05:24:40.6699452-05:00;VSTestExecutionThread;Info;Log file path: D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T052440.log
+2022-06-04T05:24:40.6759782-05:00;Thread#13;Info;Checking activation
+2022-06-04T05:24:40.7289467-05:00;Thread#13;Info;Activated.
+2022-06-04T05:24:40.7289467-05:00;Thread#13;Info;Activation check completed
+2022-06-04T05:24:40.7289467-05:00;Thread#13;Info;Starting test run
+2022-06-04T05:24:40.7579457-05:00;Thread#13;Info;Discovering target: Default
+2022-06-04T05:24:40.7579457-05:00;Thread#13;Info;Discovering tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T05:24:41.0049454-05:00;Thread#13;Info;Discovered tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T05:24:41.0059482-05:00:Test Suite Dump
+2022-06-04T05:24:41.0069479-05:00:#0: Unnamed project/ - 
+2022-06-04T05:24:41.0069479-05:00:#1: Default - 
+2022-06-04T05:24:41.0069479-05:00:#2: UnitTestProjectSistemaDiagnostico - 
+2022-06-04T05:24:41.0069479-05:00:#31: EliminarEmpleado - 
+2022-06-04T05:24:41.0329854-05:00:#32: Empleado elimina paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:EliminarEmpleado/Scenario:Empleado+elimina+paciente
+2022-06-04T05:24:41.0329854-05:00:End: Test Suite Dump
+2022-06-04T05:24:41.0489460-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T05:24:41.0509460-05:00:Thread#:Scheduler: testitem #32 from normal test queue 
+2022-06-04T05:24:41.0509460-05:00:Thread#0:Scheduler: considering testitem #32 for thread 0
+2022-06-04T05:24:41.0549475-05:00:Thread#0:TestItem#32:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T05:24:41.0549475-05:00:Thread#0:TestItem#32:runsOnOneOtherThreadSpecific:False
+2022-06-04T05:24:41.0549475-05:00:Thread#0:TestItem#32:runsOnOneOtherThreadUnspecific:False
+2022-06-04T05:24:41.0549475-05:00:Thread#0:Scheduler: using testitem #32 for thread 0
+2022-06-04T05:24:41.0559473-05:00:Thread#0:Scheduler: Test #32 is scheduled for thread
+2022-06-04T05:24:41.0569459-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T05:24:41.0589472-05:00:Thread #0: creating new test thread executor for UnitTestProjectSistemaDiagnostico, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2022-06-04T05:24:41.0609469-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T05:24:41.0619464-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T05:24:41.0629461-05:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.InProcess.InProcAppDomainTestAssemblyExecutorHost to execute tests
+2022-06-04T05:24:41.2039467-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\LivingDoc.SpecFlowPlugin.dll
+2022-06-04T05:24:41.2089470-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\SpecRun.Runtime.SpecFlowPlugin.dll
+2022-06-04T05:24:41.2109649-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T05:24:41.2159460-05:00:Thread#0:T:-> Using default config
+2022-06-04T05:24:41.4079757-05:00:Thread#0: Test #32/0 is started on thread #0
+2022-06-04T05:24:41.4239462-05:00:Thread#0:B:Given selecciono el empleado con el dni 72303120
+2022-06-04T05:24:41.5059764-05:00:Thread#0:T:done: EliminarEmpleadoSteps.GivenSeleccionoElEmpleadoConElDni("72303120") (0.0s)
+2022-06-04T05:24:41.5069776-05:00:Thread#0:B:When selecciono la opcion eliminar
+2022-06-04T05:24:41.7179454-05:00:Thread#0:T:done: EliminarEmpleadoSteps.WhenSeleccionoLaOpcionEliminar() (0.2s)
+2022-06-04T05:24:41.7189463-05:00:Thread#0:B:Then Se visualiza el mensaje "Correcto"
+2022-06-04T05:24:41.7569456-05:00:Thread#0:T:error: Error de Assert.AreEqual. Se esperaba <No se pudo Eliminar el Registro>, pero es <Correcto>.  (0.0s)
+2022-06-04T05:24:41.7839452-05:00:Thread#0:TestItem#32:Scheduler: reschedule tests for testitem #32
+2022-06-04T05:24:41.7849446-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T05:24:41.7849446-05:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #32
+2022-06-04T05:24:41.7849446-05:00:Thread#0:Scheduler: considering testitem #32 for thread 0
+2022-06-04T05:24:41.7849446-05:00:Thread#0:TestItem#32:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T05:24:41.7849446-05:00:Thread#0:TestItem#32:runsOnOneOtherThreadSpecific:False
+2022-06-04T05:24:41.7849446-05:00:Thread#0:TestItem#32:runsOnOneOtherThreadUnspecific:False
+2022-06-04T05:24:41.7849446-05:00:Thread#0:Scheduler: using testitem #32 for thread 0
+2022-06-04T05:24:41.7849446-05:00:Thread#0:Scheduler: Test #32 is scheduled for thread
+2022-06-04T05:24:41.7849446-05:00:Thread#0:Scheduler: with testItemExecutionIndex 1
+2022-06-04T05:24:41.7949445-05:00:Thread#0: Test #32/0 is finished on thread #0 as Failed within 0.3859692 seconds
+2022-06-04T05:24:41.7959466-05:00:Thread#0: Test #32/1 is started on thread #0
+2022-06-04T05:24:41.7959466-05:00:Thread#0:B:Given selecciono el empleado con el dni 72303120
+2022-06-04T05:24:41.7959466-05:00:Thread#0:T:done: EliminarEmpleadoSteps.GivenSeleccionoElEmpleadoConElDni("72303120") (0.0s)
+2022-06-04T05:24:41.7959466-05:00:Thread#0:B:When selecciono la opcion eliminar
+2022-06-04T05:24:41.7979455-05:00:Thread#0:T:done: EliminarEmpleadoSteps.WhenSeleccionoLaOpcionEliminar() (0.0s)
+2022-06-04T05:24:41.7989469-05:00:Thread#0:B:Then Se visualiza el mensaje "Correcto"
+2022-06-04T05:24:41.7989469-05:00:Thread#0:T:error: Error de Assert.AreEqual. Se esperaba <No se pudo Eliminar el Registro>, pero es <Correcto>.  (0.0s)
+2022-06-04T05:24:41.7999459-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T05:24:41.7999459-05:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #32
+2022-06-04T05:24:41.7999459-05:00:Thread#0:Scheduler: considering testitem #32 for thread 0
+2022-06-04T05:24:41.7999459-05:00:Thread#0:TestItem#32:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T05:24:41.7999459-05:00:Thread#0:TestItem#32:runsOnOneOtherThreadSpecific:False
+2022-06-04T05:24:41.7999459-05:00:Thread#0:TestItem#32:runsOnOneOtherThreadUnspecific:False
+2022-06-04T05:24:41.7999459-05:00:Thread#0:Scheduler: using testitem #32 for thread 0
+2022-06-04T05:24:41.7999459-05:00:Thread#0:Scheduler: Test #32 is scheduled for thread
+2022-06-04T05:24:41.7999459-05:00:Thread#0:Scheduler: with testItemExecutionIndex 2
+2022-06-04T05:24:41.7999459-05:00:Thread#0: Test #32/1 is finished on thread #0 as Failed within 0.0039993 seconds
+2022-06-04T05:24:41.7999459-05:00:Thread#0: Test #32/2 is started on thread #0
+2022-06-04T05:24:41.7999459-05:00:Thread#0:B:Given selecciono el empleado con el dni 72303120
+2022-06-04T05:24:41.8009449-05:00:Thread#0:T:done: EliminarEmpleadoSteps.GivenSeleccionoElEmpleadoConElDni("72303120") (0.0s)
+2022-06-04T05:24:41.8009449-05:00:Thread#0:B:When selecciono la opcion eliminar
+2022-06-04T05:24:41.8009449-05:00:Thread#0:T:done: EliminarEmpleadoSteps.WhenSeleccionoLaOpcionEliminar() (0.0s)
+2022-06-04T05:24:41.8009449-05:00:Thread#0:B:Then Se visualiza el mensaje "Correcto"
+2022-06-04T05:24:41.8019459-05:00:Thread#0:T:error: Error de Assert.AreEqual. Se esperaba <No se pudo Eliminar el Registro>, pero es <Correcto>.  (0.0s)
+2022-06-04T05:24:41.8019459-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T05:24:41.8019459-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T05:24:41.8019459-05:00:Thread#0:Scheduler: enumerator for thread is at end
+2022-06-04T05:24:41.8019459-05:00:Thread#0:Scheduler: No more tests for thread
+2022-06-04T05:24:41.8039461-05:00:Thread#0: Test #32/2 is finished on thread #0 as Failed within 0.0030003 seconds
+2022-06-04T05:24:41.8139464-05:00:Thread#0:T:-> LivingDocPlugin: Output generated in: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\TestExecution.json
+2022-06-04T05:24:44.2107854-05:00:Trying to cancel thread
+2022-06-04T05:24:44.2107854-05:00:Thread cancelled
+2022-06-04T05:24:44.2158091-05:00:Thread#-1:Scheduler: get next test for thread -1
+2022-06-04T05:24:44.2158091-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T05:24:44.2158091-05:00:Thread#-1:Scheduler: enumerator for thread is at end
+2022-06-04T05:24:44.2198086-05:00;Thread#13;Info;test run finished
+2022-06-04T05:24:44.2198086-05:00;Thread#13;Info;publishing test results
+2022-06-04T05:24:44.2237844-05:00;Thread#13;Info;test results published
+2022-06-04T05:24:44.2237844-05:00;Thread#13;Info;generating reports
+2022-06-04T05:24:44.3017837-05:00;Thread#13;Info;Starting external report generation process
+2022-06-04T05:24:45.3748324-05:00;Thread#13;Info;Successfully generated reports.
+2022-06-04T05:24:45.3758339-05:00;Thread#13;Info;Successfully generated reports
+2022-06-04T05:24:45.3818639-05:00:Total: 1 (test executions: 3)
+2022-06-04T05:24:45.3828644-05:00:Succeeded: 0
+2022-06-04T05:24:45.3838629-05:00:Ignored: 0
+2022-06-04T05:24:45.3838629-05:00:Pending: 0
+2022-06-04T05:24:45.3838629-05:00:Skipped: 0
+2022-06-04T05:24:45.3838629-05:00:Failed: 1
+2022-06-04T05:24:45.3918338-05:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2022-06-04T05:24:45.3918338-05:00;VSTestExecutionThread;Info;adding Test Execution Report 'D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T052440.html'
+========== End of log file ==========

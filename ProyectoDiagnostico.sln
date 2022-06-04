@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDiagnostico.Presenta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDiagnostico.AccesoDatos", "SistemaDiagnostico.AccesoDatos\SistemaDiagnostico.AccesoDatos.csproj", "{FD1C0306-0466-483F-9817-D5120EE3EDDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProjectSistemaDiagnostico", "UnitTestProjectSistemaDiagnostico\UnitTestProjectSistemaDiagnostico.csproj", "{D6889727-1A20-4D01-A9EC-28A21E154482}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDiag", "UnitTestProjectSistemaDiagnostico\TestDiag.csproj", "{D6889727-1A20-4D01-A9EC-28A21E154482}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

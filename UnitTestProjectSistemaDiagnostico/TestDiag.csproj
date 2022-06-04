@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.props" Condition="Exists('..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.props')" />
   <Import Project="..\packages\ReportGenerator.5.1.9\build\netstandard2.0\ReportGenerator.props" Condition="Exists('..\packages\ReportGenerator.5.1.9\build\netstandard2.0\ReportGenerator.props')" />
   <Import Project="..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.props" Condition="Exists('..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.props')" />
   <Import Project="..\packages\SpecRun.SpecFlow.3-9-0.3.9.31\build\SpecRun.SpecFlow.3-9-0.props" Condition="Exists('..\packages\SpecRun.SpecFlow.3-9-0.3.9.31\build\SpecRun.SpecFlow.3-9-0.props')" />
@@ -90,23 +91,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivarEmpleados.feature.cs" />
+    <Compile Include="ActivarEmpleadosSteps.cs" />
     <Compile Include="ActivarUsuario.feature.cs" />
     <Compile Include="ActivarUsuarioSteps.cs" />
+    <Compile Include="ActualizarEmpleado.feature.cs" />
+    <Compile Include="ActualizarEmpleadoSteps.cs" />
     <Compile Include="ActualizarPaciente.feature.cs" />
     <Compile Include="ActualizarPacienteSteps.cs" />
     <Compile Include="BuscarEmpleadoSteps.cs" />
     <Compile Include="BuscarPaciente.feature.cs" />
     <Compile Include="BuscarPacienteSteps.cs" />
     <Compile Include="BuscarUsuarioSteps.cs" />
+    <Compile Include="DesactivarEmpleados.feature.cs" />
+    <Compile Include="DesactivarEmpleadosSteps.cs" />
     <Compile Include="DesactivarUsuario.feature.cs" />
     <Compile Include="DesactivarUsuarioSteps.cs" />
+    <Compile Include="EliminarEmpleadoSteps.cs" />
     <Compile Include="EliminarPaciente.feature.cs" />
     <Compile Include="EliminarPacienteSteps.cs" />
     <Compile Include="EliminarUsuarioSteps.cs" />
     <Compile Include="IniciarSesionSteps.cs" />
+    <Compile Include="ListarEmpleados.feature.cs" />
+    <Compile Include="ListarEmpleadosSteps.cs" />
     <Compile Include="ListarPaciente.feature.cs" />
     <Compile Include="ListarPacienteSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarEmpleado.feature.cs" />
+    <Compile Include="RegistrarEmpleadoSteps.cs" />
     <Compile Include="RegistrarPaciente.feature.cs" />
     <Compile Include="RegistrarPacienteSteps.cs" />
     <Compile Include="RegistrarUsuarioSteps.cs" />
@@ -114,17 +126,23 @@
     <Compile Include="VerificarLoginSteps.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ActivarEmpleados.feature" />
     <None Include="ActivarUsuario.feature" />
+    <None Include="ActualizarEmpleado.feature" />
     <None Include="ActualizarPaciente.feature" />
     <None Include="BuscarEmpleado.feature" />
     <None Include="BuscarPaciente.feature" />
     <None Include="BuscarUsuario.feature" />
+    <None Include="DesactivarEmpleados.feature" />
     <None Include="DesactivarUsuario.feature" />
+    <None Include="EliminarEmpleado.feature" />
     <None Include="EliminarPaciente.feature" />
     <None Include="EliminarUsuario.feature" />
     <None Include="IniciarSesion.feature" />
+    <None Include="ListarEmpleados.feature" />
     <None Include="ListarPaciente.feature" />
     <None Include="packages.config" />
+    <None Include="RegistrarEmpleado.feature" />
     <None Include="RegistrarPaciente.feature" />
     <None Include="RegistrarUsuario.feature" />
     <None Include="runtests.cmd" />
@@ -174,6 +192,8 @@
     <Error Condition="!Exists('..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.props'))" />
     <Error Condition="!Exists('..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.targets'))" />
     <Error Condition="!Exists('..\packages\ReportGenerator.5.1.9\build\netstandard2.0\ReportGenerator.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ReportGenerator.5.1.9\build\netstandard2.0\ReportGenerator.props'))" />
+    <Error Condition="!Exists('..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.props'))" />
+    <Error Condition="!Exists('..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.targets'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" />
   <Import Project="..\packages\Microsoft.NET.Test.Sdk.15.0.0\build\net45\Microsoft.Net.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.15.0.0\build\net45\Microsoft.Net.Test.Sdk.targets')" />
@@ -182,4 +202,5 @@
   <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.9.40\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.9.40\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <Import Project="..\packages\SpecRun.SpecFlow.3-9-0.3.9.31\build\SpecRun.SpecFlow.3-9-0.targets" Condition="Exists('..\packages\SpecRun.SpecFlow.3-9-0.3.9.31\build\SpecRun.SpecFlow.3-9-0.targets')" />
   <Import Project="..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.targets" Condition="Exists('..\packages\SpecFlow.Plus.LivingDocPlugin.3.9.57\build\SpecFlow.Plus.LivingDocPlugin.targets')" />
+  <Import Project="..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.targets" Condition="Exists('..\packages\coverlet.msbuild.3.1.2\build\coverlet.msbuild.targets')" />
 </Project>
