@@ -6,9 +6,10 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest'
+#pool:
+#  vmImage: 'windows-latest'
 
+pool: MyPool
 variables:
   solution: '**/*.sln'
   buildPlatform: 'x86|x64|ARM'
