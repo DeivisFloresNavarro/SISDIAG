@@ -1,0 +1,106 @@
+﻿2022-06-04T00:34:24.2719350-05:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2022-06-04T00:34:24.2719350-05:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.9.31 in Framework clr40 in x86 mode execution started
+2022-06-04T00:34:24.2719350-05:00;VSTestExecutionThread;Info;TestAdapter Location: D:\Proyecto\SistemaDiagnostico\packages\SpecRun.Runner.3.9.31\tools\net461\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2022-06-04T00:34:24.2719350-05:00;VSTestExecutionThread;Info;Current UserName: 'Usuario', MachineName: 'DESKTOP-839CFT0'
+2022-06-04T00:34:24.3119049-05:00;VSTestExecutionThread;Info;SpecRun: running tests in D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T00:34:24.3119049-05:00;VSTestExecutionThread;Info;Output folder configured to "D:\Proyecto\SistemaDiagnostico\TestResults" (default)
+2022-06-04T00:34:24.3119049-05:00;VSTestExecutionThread;Info;Profile: 
+2022-06-04T00:34:24.3519048-05:00;VSTestExecutionThread;Info;Log file path: D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T003424.log
+2022-06-04T00:34:24.3579078-05:00;Thread#13;Info;Checking activation
+2022-06-04T00:34:24.4089039-05:00;Thread#13;Info;Activated.
+2022-06-04T00:34:24.4089039-05:00;Thread#13;Info;Activation check completed
+2022-06-04T00:34:24.4089039-05:00;Thread#13;Info;Starting test run
+2022-06-04T00:34:24.4409050-05:00;Thread#13;Info;Discovering target: Default
+2022-06-04T00:34:24.4409050-05:00;Thread#13;Info;Discovering tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T00:34:24.6969348-05:00;Thread#13;Info;Discovered tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T00:34:24.6969348-05:00:Test Suite Dump
+2022-06-04T00:34:24.6979055-05:00:#0: Unnamed project/ - 
+2022-06-04T00:34:24.6979055-05:00:#1: Default - 
+2022-06-04T00:34:24.6979055-05:00:#2: UnitTestProjectSistemaDiagnostico - 
+2022-06-04T00:34:24.6979055-05:00:#11: EliminarPaciente - 
+2022-06-04T00:34:24.7249188-05:00:#12: Empleado elimina paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:EliminarPaciente/Scenario:Empleado+elimina+paciente
+2022-06-04T00:34:24.7249188-05:00:End: Test Suite Dump
+2022-06-04T00:34:24.7419057-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T00:34:24.7439077-05:00:Thread#:Scheduler: testitem #12 from normal test queue 
+2022-06-04T00:34:24.7439077-05:00:Thread#0:Scheduler: considering testitem #12 for thread 0
+2022-06-04T00:34:24.7469356-05:00:Thread#0:TestItem#12:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T00:34:24.7469356-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadSpecific:False
+2022-06-04T00:34:24.7479049-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadUnspecific:False
+2022-06-04T00:34:24.7479049-05:00:Thread#0:Scheduler: using testitem #12 for thread 0
+2022-06-04T00:34:24.7479049-05:00:Thread#0:Scheduler: Test #12 is scheduled for thread
+2022-06-04T00:34:24.7489050-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T00:34:24.7509048-05:00:Thread #0: creating new test thread executor for UnitTestProjectSistemaDiagnostico, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2022-06-04T00:34:24.7529047-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T00:34:24.7539050-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T00:34:24.7549041-05:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.InProcess.InProcAppDomainTestAssemblyExecutorHost to execute tests
+2022-06-04T00:34:24.8979346-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\SpecRun.Runtime.SpecFlowPlugin.dll
+2022-06-04T00:34:24.9019079-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T00:34:24.9029352-05:00:Thread#0:T:-> Using default config
+2022-06-04T00:34:25.1009050-05:00:Thread#0: Test #12/0 is started on thread #0
+2022-06-04T00:34:25.1159060-05:00:Thread#0:B:Given selecciono la casilla al lado del dni 74527943
+2022-06-04T00:34:25.2019044-05:00:Thread#0:T:done: EliminarPacienteSteps.GivenSeleccionoLaCasillaAlLadoDelDni("74527943") (0.0s)
+2022-06-04T00:34:25.2029044-05:00:Thread#0:B:When hago click en el boton eliminar
+2022-06-04T00:34:25.4279057-05:00:Thread#0:T:done: EliminarPacienteSteps.WhenHagoClickEnElBotonEliminar() (0.2s)
+2022-06-04T00:34:25.4289365-05:00:Thread#0:B:Then Se visualiza un mensaje con la palabra "Correcto"
+2022-06-04T00:34:25.4649051-05:00:Thread#0:T:error: Error de Assert.AreEqual. Se esperaba <No se puede eliminar el registro>, pero es <Correcto>.  (0.0s)
+2022-06-04T00:34:25.4929348-05:00:Thread#0:TestItem#12:Scheduler: reschedule tests for testitem #12
+2022-06-04T00:34:25.4939049-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T00:34:25.4939049-05:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #12
+2022-06-04T00:34:25.4939049-05:00:Thread#0:Scheduler: considering testitem #12 for thread 0
+2022-06-04T00:34:25.4939049-05:00:Thread#0:TestItem#12:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T00:34:25.4939049-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadSpecific:False
+2022-06-04T00:34:25.4939049-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadUnspecific:False
+2022-06-04T00:34:25.4939049-05:00:Thread#0:Scheduler: using testitem #12 for thread 0
+2022-06-04T00:34:25.4939049-05:00:Thread#0:Scheduler: Test #12 is scheduled for thread
+2022-06-04T00:34:25.4939049-05:00:Thread#0:Scheduler: with testItemExecutionIndex 1
+2022-06-04T00:34:25.5039050-05:00:Thread#0: Test #12/0 is finished on thread #0 as Failed within 0.403 seconds
+2022-06-04T00:34:25.5049043-05:00:Thread#0: Test #12/1 is started on thread #0
+2022-06-04T00:34:25.5049043-05:00:Thread#0:B:Given selecciono la casilla al lado del dni 74527943
+2022-06-04T00:34:25.5059060-05:00:Thread#0:T:done: EliminarPacienteSteps.GivenSeleccionoLaCasillaAlLadoDelDni("74527943") (0.0s)
+2022-06-04T00:34:25.5059060-05:00:Thread#0:B:When hago click en el boton eliminar
+2022-06-04T00:34:25.5079355-05:00:Thread#0:T:done: EliminarPacienteSteps.WhenHagoClickEnElBotonEliminar() (0.0s)
+2022-06-04T00:34:25.5079355-05:00:Thread#0:B:Then Se visualiza un mensaje con la palabra "Correcto"
+2022-06-04T00:34:25.5089350-05:00:Thread#0:T:error: Error de Assert.AreEqual. Se esperaba <No se puede eliminar el registro>, pero es <Correcto>.  (0.0s)
+2022-06-04T00:34:25.5089350-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T00:34:25.5089350-05:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #12
+2022-06-04T00:34:25.5089350-05:00:Thread#0:Scheduler: considering testitem #12 for thread 0
+2022-06-04T00:34:25.5089350-05:00:Thread#0:TestItem#12:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T00:34:25.5089350-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadSpecific:False
+2022-06-04T00:34:25.5089350-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadUnspecific:False
+2022-06-04T00:34:25.5089350-05:00:Thread#0:Scheduler: using testitem #12 for thread 0
+2022-06-04T00:34:25.5089350-05:00:Thread#0:Scheduler: Test #12 is scheduled for thread
+2022-06-04T00:34:25.5089350-05:00:Thread#0:Scheduler: with testItemExecutionIndex 2
+2022-06-04T00:34:25.5089350-05:00:Thread#0: Test #12/1 is finished on thread #0 as Failed within 0.0040307 seconds
+2022-06-04T00:34:25.5099045-05:00:Thread#0: Test #12/2 is started on thread #0
+2022-06-04T00:34:25.5099045-05:00:Thread#0:B:Given selecciono la casilla al lado del dni 74527943
+2022-06-04T00:34:25.5099045-05:00:Thread#0:T:done: EliminarPacienteSteps.GivenSeleccionoLaCasillaAlLadoDelDni("74527943") (0.0s)
+2022-06-04T00:34:25.5099045-05:00:Thread#0:B:When hago click en el boton eliminar
+2022-06-04T00:34:25.5099045-05:00:Thread#0:T:done: EliminarPacienteSteps.WhenHagoClickEnElBotonEliminar() (0.0s)
+2022-06-04T00:34:25.5109353-05:00:Thread#0:B:Then Se visualiza un mensaje con la palabra "Correcto"
+2022-06-04T00:34:25.5109353-05:00:Thread#0:T:error: Error de Assert.AreEqual. Se esperaba <No se puede eliminar el registro>, pero es <Correcto>.  (0.0s)
+2022-06-04T00:34:25.5109353-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T00:34:25.5109353-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T00:34:25.5109353-05:00:Thread#0:Scheduler: enumerator for thread is at end
+2022-06-04T00:34:25.5109353-05:00:Thread#0:Scheduler: No more tests for thread
+2022-06-04T00:34:25.5129348-05:00:Thread#0: Test #12/2 is finished on thread #0 as Failed within 0.0030303 seconds
+2022-06-04T00:34:25.5279347-05:00:Trying to cancel thread
+2022-06-04T00:34:25.5279347-05:00:Thread cancelled
+2022-06-04T00:34:25.5339043-05:00:Thread#-1:Scheduler: get next test for thread -1
+2022-06-04T00:34:25.5339043-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T00:34:25.5339043-05:00:Thread#-1:Scheduler: enumerator for thread is at end
+2022-06-04T00:34:25.5369350-05:00;Thread#13;Info;test run finished
+2022-06-04T00:34:25.5369350-05:00;Thread#13;Info;publishing test results
+2022-06-04T00:34:25.5409063-05:00;Thread#13;Info;test results published
+2022-06-04T00:34:25.5409063-05:00;Thread#13;Info;generating reports
+2022-06-04T00:34:25.6249210-05:00;Thread#13;Info;Starting external report generation process
+2022-06-04T00:34:26.7039064-05:00;Thread#13;Info;Successfully generated reports.
+2022-06-04T00:34:26.7049047-05:00;Thread#13;Info;Successfully generated reports
+2022-06-04T00:34:26.7109367-05:00:Total: 1 (test executions: 3)
+2022-06-04T00:34:26.7129354-05:00:Succeeded: 0
+2022-06-04T00:34:26.7129354-05:00:Ignored: 0
+2022-06-04T00:34:26.7129354-05:00:Pending: 0
+2022-06-04T00:34:26.7129354-05:00:Skipped: 0
+2022-06-04T00:34:26.7139048-05:00:Failed: 1
+2022-06-04T00:34:26.7209352-05:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2022-06-04T00:34:26.7209352-05:00;VSTestExecutionThread;Info;adding Test Execution Report 'D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T003424.html'
+========== End of log file ==========

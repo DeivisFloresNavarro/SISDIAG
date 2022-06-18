@@ -19,7 +19,7 @@ namespace UnitTestProjectSistemaDiagnostico
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("IniciarSesion", Description="\tSimple calculator for adding two numbers", SourceFile="IniciarSesion.feature", SourceLine=0)]
+    [TechTalk.SpecRun.FeatureAttribute("IniciarSesion", Description="\tIniciar Sesion del sistema", SourceFile="IniciarSesion.feature", SourceLine=0)]
     public partial class IniciarSesionFeature
     {
         
@@ -34,7 +34,7 @@ namespace UnitTestProjectSistemaDiagnostico
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "IniciarSesion", "\tSimple calculator for adding two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "IniciarSesion", "\tIniciar Sesion del sistema", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,14 +70,14 @@ namespace UnitTestProjectSistemaDiagnostico
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Succesful login", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Add two numbers", new string[] {
                 "mytag"}, SourceLine=4)]
-        public virtual void SuccesfulLogin()
+        public virtual void AddTwoNumbers()
         {
             string[] tagsOfScenario = new string[] {
                     "mytag"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Succesful login", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -98,53 +98,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Successful Login with Valid Credentials", SourceLine=5)]
-        public virtual void SuccessfulLoginWithValidCredentials()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful Login with Valid Credentials", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
- this.ScenarioInitialize(scenarioInfo);
+ testRunner.Given("se digita el usuario \"daniel\" con clave \"1234\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table2.AddRow(new string[] {
-                            "Uuario",
-                            "daniel"});
-                table2.AddRow(new string[] {
-                            "Password",
+#line 7
+ testRunner.When("Hago click en el botón ingresar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Usuario",
+                            "Clave"});
+                table4.AddRow(new string[] {
+                            "daniel",
                             "1234"});
 #line 8
- testRunner.Given("User enter credentials", ((string)(null)), table2, "Given ");
-#line hidden
-#line 12
- testRunner.When("Click on the LogIn button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 13
- testRunner.Then("Successful LogIN message should display", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Debería buscar en la base de datos y confirmasr su existencia", ((string)(null)), table4, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

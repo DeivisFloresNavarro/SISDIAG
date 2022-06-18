@@ -1,0 +1,106 @@
+﻿2022-06-03T21:36:16.7989297-05:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2022-06-03T21:36:16.7989297-05:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.9.31 in Framework clr40 in x86 mode execution started
+2022-06-03T21:36:16.7989297-05:00;VSTestExecutionThread;Info;TestAdapter Location: D:\Proyecto\SistemaDiagnostico\packages\SpecRun.Runner.3.9.31\tools\net461\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2022-06-03T21:36:16.7989297-05:00;VSTestExecutionThread;Info;Current UserName: 'Usuario', MachineName: 'DESKTOP-839CFT0'
+2022-06-03T21:36:16.8369711-05:00;VSTestExecutionThread;Info;SpecRun: running tests in D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-03T21:36:16.8369711-05:00;VSTestExecutionThread;Info;Output folder configured to "D:\Proyecto\SistemaDiagnostico\TestResults" (default)
+2022-06-03T21:36:16.8369711-05:00;VSTestExecutionThread;Info;Profile: 
+2022-06-03T21:36:16.8769422-05:00;VSTestExecutionThread;Info;Log file path: D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-03T213616.log
+2022-06-03T21:36:16.8819398-05:00;Thread#13;Info;Checking activation
+2022-06-03T21:36:16.9319408-05:00;Thread#13;Info;Activated.
+2022-06-03T21:36:16.9329397-05:00;Thread#13;Info;Activation check completed
+2022-06-03T21:36:16.9329397-05:00;Thread#13;Info;Starting test run
+2022-06-03T21:36:16.9619718-05:00;Thread#13;Info;Discovering target: Default
+2022-06-03T21:36:16.9629766-05:00;Thread#13;Info;Discovering tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-03T21:36:17.2259403-05:00;Thread#13;Info;Discovered tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-03T21:36:17.2269716-05:00:Test Suite Dump
+2022-06-03T21:36:17.2279430-05:00:#0: Unnamed project/ - 
+2022-06-03T21:36:17.2279430-05:00:#1: Default - 
+2022-06-03T21:36:17.2279430-05:00:#2: UnitTestProjectSistemaDiagnostico - 
+2022-06-03T21:36:17.2279430-05:00:#9: VerificarLogin - 
+2022-06-03T21:36:17.2539723-05:00:#10: verifiacion de dni exitosa - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:VerificarLogin/Scenario:verifiacion+de+dni+exitosa
+2022-06-03T21:36:17.2539723-05:00:End: Test Suite Dump
+2022-06-03T21:36:17.2729421-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-03T21:36:17.2739413-05:00:Thread#:Scheduler: testitem #10 from normal test queue 
+2022-06-03T21:36:17.2739413-05:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2022-06-03T21:36:17.2769410-05:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-03T21:36:17.2769410-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2022-06-03T21:36:17.2769410-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2022-06-03T21:36:17.2769410-05:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2022-06-03T21:36:17.2789719-05:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2022-06-03T21:36:17.2799426-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-03T21:36:17.2819709-05:00:Thread #0: creating new test thread executor for UnitTestProjectSistemaDiagnostico, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2022-06-03T21:36:17.2829711-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-03T21:36:17.2999423-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-03T21:36:17.3019710-05:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.InProcess.InProcAppDomainTestAssemblyExecutorHost to execute tests
+2022-06-03T21:36:17.6245636-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\SpecRun.Runtime.SpecFlowPlugin.dll
+2022-06-03T21:36:17.6285586-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-03T21:36:17.6295635-05:00:Thread#0:T:-> Using default config
+2022-06-03T21:36:17.8355646-05:00:Thread#0: Test #10/0 is started on thread #0
+2022-06-03T21:36:17.8505316-05:00:Thread#0:B:Given El dni del usuario es 70323854
+2022-06-03T21:36:17.9355318-05:00:Thread#0:T:done: VerificarLoginSteps.GivenElDniDelUsuarioEs("70323854") (0.0s)
+2022-06-03T21:36:17.9365304-05:00:Thread#0:B:When hagla click en diagnostico
+2022-06-03T21:36:18.3976022-05:00:Thread#0:T:done: VerificarLoginSteps.WhenHaglaClickEnDiagnostico() (0.5s)
+2022-06-03T21:36:18.3986023-05:00:Thread#0:B:Then se deberia confirmar DNI
+2022-06-03T21:36:18.3996023-05:00:Thread#0:T:binding error: Parameter count mismatch! The binding method 'UnitTestProjectSistemaDiagnostico:UnitTestProjectSistemaDiagnostico.VerificarLoginSteps.ThenSeDeberiaConfirmarDNI(Table)' should have 0 parameters
+2022-06-03T21:36:18.4916326-05:00:Thread#0:TestItem#10:Scheduler: reschedule tests for testitem #10
+2022-06-03T21:36:18.4926253-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-03T21:36:18.4926253-05:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #10
+2022-06-03T21:36:18.4926253-05:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2022-06-03T21:36:18.4926253-05:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-03T21:36:18.4926253-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2022-06-03T21:36:18.4926253-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2022-06-03T21:36:18.4926253-05:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2022-06-03T21:36:18.4926253-05:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2022-06-03T21:36:18.4926253-05:00:Thread#0:Scheduler: with testItemExecutionIndex 1
+2022-06-03T21:36:18.5036045-05:00:Thread#0: Test #10/0 is finished on thread #0 as Failed within 0.6680399 seconds
+2022-06-03T21:36:18.5046323-05:00:Thread#0: Test #10/1 is started on thread #0
+2022-06-03T21:36:18.5046323-05:00:Thread#0:B:Given El dni del usuario es 70323854
+2022-06-03T21:36:18.5046323-05:00:Thread#0:T:done: VerificarLoginSteps.GivenElDniDelUsuarioEs("70323854") (0.0s)
+2022-06-03T21:36:18.5056491-05:00:Thread#0:B:When hagla click en diagnostico
+2022-06-03T21:36:18.5086326-05:00:Thread#0:T:done: VerificarLoginSteps.WhenHaglaClickEnDiagnostico() (0.0s)
+2022-06-03T21:36:18.5086326-05:00:Thread#0:B:Then se deberia confirmar DNI
+2022-06-03T21:36:18.5086326-05:00:Thread#0:T:binding error: Parameter count mismatch! The binding method 'UnitTestProjectSistemaDiagnostico:UnitTestProjectSistemaDiagnostico.VerificarLoginSteps.ThenSeDeberiaConfirmarDNI(Table)' should have 0 parameters
+2022-06-03T21:36:18.5146358-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-03T21:36:18.5146358-05:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #10
+2022-06-03T21:36:18.5146358-05:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2022-06-03T21:36:18.5146358-05:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-03T21:36:18.5146358-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2022-06-03T21:36:18.5146358-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2022-06-03T21:36:18.5146358-05:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2022-06-03T21:36:18.5146358-05:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2022-06-03T21:36:18.5146358-05:00:Thread#0:Scheduler: with testItemExecutionIndex 2
+2022-06-03T21:36:18.5156023-05:00:Thread#0: Test #10/1 is finished on thread #0 as Failed within 0.01097 seconds
+2022-06-03T21:36:18.5156023-05:00:Thread#0: Test #10/2 is started on thread #0
+2022-06-03T21:36:18.5156023-05:00:Thread#0:B:Given El dni del usuario es 70323854
+2022-06-03T21:36:18.5156023-05:00:Thread#0:T:done: VerificarLoginSteps.GivenElDniDelUsuarioEs("70323854") (0.0s)
+2022-06-03T21:36:18.5156023-05:00:Thread#0:B:When hagla click en diagnostico
+2022-06-03T21:36:18.5166020-05:00:Thread#0:T:done: VerificarLoginSteps.WhenHaglaClickEnDiagnostico() (0.0s)
+2022-06-03T21:36:18.5166020-05:00:Thread#0:B:Then se deberia confirmar DNI
+2022-06-03T21:36:18.5166020-05:00:Thread#0:T:binding error: Parameter count mismatch! The binding method 'UnitTestProjectSistemaDiagnostico:UnitTestProjectSistemaDiagnostico.VerificarLoginSteps.ThenSeDeberiaConfirmarDNI(Table)' should have 0 parameters
+2022-06-03T21:36:18.5176048-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-03T21:36:18.5176048-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-03T21:36:18.5176048-05:00:Thread#0:Scheduler: enumerator for thread is at end
+2022-06-03T21:36:18.5176048-05:00:Thread#0:Scheduler: No more tests for thread
+2022-06-03T21:36:18.5186042-05:00:Thread#0: Test #10/2 is finished on thread #0 as Failed within 0.0030019 seconds
+2022-06-03T21:36:18.5356338-05:00:Trying to cancel thread
+2022-06-03T21:36:18.5356338-05:00:Thread cancelled
+2022-06-03T21:36:18.5416028-05:00:Thread#-1:Scheduler: get next test for thread -1
+2022-06-03T21:36:18.5416028-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-03T21:36:18.5416028-05:00:Thread#-1:Scheduler: enumerator for thread is at end
+2022-06-03T21:36:18.5456336-05:00;Thread#13;Info;test run finished
+2022-06-03T21:36:18.5456336-05:00;Thread#13;Info;publishing test results
+2022-06-03T21:36:18.5666340-05:00;Thread#13;Info;test results published
+2022-06-03T21:36:18.5666340-05:00;Thread#13;Info;generating reports
+2022-06-03T21:36:18.6596029-05:00;Thread#13;Info;Starting external report generation process
+2022-06-03T21:36:20.0804064-05:00;Thread#13;Info;Successfully generated reports.
+2022-06-03T21:36:20.0814053-05:00;Thread#13;Info;Successfully generated reports
+2022-06-03T21:36:20.0884053-05:00:Total: 1 (test executions: 3)
+2022-06-03T21:36:20.0904048-05:00:Succeeded: 0
+2022-06-03T21:36:20.0904048-05:00:Ignored: 0
+2022-06-03T21:36:20.0904048-05:00:Pending: 0
+2022-06-03T21:36:20.0914047-05:00:Skipped: 0
+2022-06-03T21:36:20.0914047-05:00:Failed: 1
+2022-06-03T21:36:20.1004062-05:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2022-06-03T21:36:20.1004062-05:00;VSTestExecutionThread;Info;adding Test Execution Report 'D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-03T213616.html'
+========== End of log file ==========

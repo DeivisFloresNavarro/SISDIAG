@@ -70,3 +70,12 @@ D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaD
 D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.csproj.CopyComplete
 D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.dll
 D:\Proyecto\SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.pdb
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\bin\Debug\SistemaDiagnostico.AccesoDatos.dll
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\bin\Debug\SistemaDiagnostico.AccesoDatos.pdb
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\bin\Debug\SistemaDiagnostico.Entidad.dll
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\bin\Debug\SistemaDiagnostico.Entidad.pdb
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.csprojAssemblyReference.cache
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.csproj.CoreCompileInputs.cache
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.csproj.CopyComplete
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.dll
+D:\Proyecto\Calidad_SistemaDiagnostico\SistemaDiagnostico.AccesoDatos\obj\Debug\SistemaDiagnostico.AccesoDatos.pdb

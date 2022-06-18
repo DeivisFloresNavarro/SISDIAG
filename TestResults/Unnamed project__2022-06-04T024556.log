@@ -1,0 +1,319 @@
+﻿2022-06-04T02:45:56.5955094-05:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2022-06-04T02:45:56.5955094-05:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.9.31 in Framework clr40 in x86 mode execution started
+2022-06-04T02:45:56.5955094-05:00;VSTestExecutionThread;Info;TestAdapter Location: D:\Proyecto\SistemaDiagnostico\packages\SpecRun.Runner.3.9.31\tools\net461\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2022-06-04T02:45:56.5965092-05:00;VSTestExecutionThread;Info;Current UserName: 'Usuario', MachineName: 'DESKTOP-839CFT0'
+2022-06-04T02:45:56.6365099-05:00;VSTestExecutionThread;Info;SpecRun: running tests in D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:45:56.6365099-05:00;VSTestExecutionThread;Info;Output folder configured to "D:\Proyecto\SistemaDiagnostico\TestResults" (default)
+2022-06-04T02:45:56.6365099-05:00;VSTestExecutionThread;Info;Profile: 
+2022-06-04T02:45:56.6795088-05:00;VSTestExecutionThread;Info;Log file path: D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T024556.log
+2022-06-04T02:45:56.6845095-05:00;Thread#13;Info;Checking activation
+2022-06-04T02:45:56.7365081-05:00;Thread#13;Info;Activated.
+2022-06-04T02:45:56.7365081-05:00;Thread#13;Info;Activation check completed
+2022-06-04T02:45:56.7365081-05:00;Thread#13;Info;Starting test run
+2022-06-04T02:45:56.7695114-05:00;Thread#13;Info;Discovering target: Default
+2022-06-04T02:45:56.7695114-05:00;Thread#13;Info;Discovering tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:45:57.0575093-05:00;Thread#13;Info;Discovered tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:45:57.0585108-05:00:Test Suite Dump
+2022-06-04T02:45:57.0595097-05:00:#0: Unnamed project/ - 
+2022-06-04T02:45:57.0595097-05:00:#1: Default - 
+2022-06-04T02:45:57.0595097-05:00:#2: UnitTestProjectSistemaDiagnostico - 
+2022-06-04T02:45:57.0595097-05:00:#3: ActivarUsuario - 
+2022-06-04T02:45:57.0595097-05:00:#5: ActualizarPaciente - 
+2022-06-04T02:45:57.0595097-05:00:#7: BuscarPaciente - 
+2022-06-04T02:45:57.0595097-05:00:#9: DesactivarUsuario - 
+2022-06-04T02:45:57.0595097-05:00:#11: EliminarPaciente - 
+2022-06-04T02:45:57.0595097-05:00:#13: ListarPaciente - 
+2022-06-04T02:45:57.0595097-05:00:#15: RegistrarPaciente - 
+2022-06-04T02:45:57.0595097-05:00:#17: BuscarEmpleado - 
+2022-06-04T02:45:57.0595097-05:00:#19: BuscarUsuario - 
+2022-06-04T02:45:57.0595097-05:00:#21: EliminarUsuario - 
+2022-06-04T02:45:57.0595097-05:00:#23: IniciarSesion - 
+2022-06-04T02:45:57.0595097-05:00:#25: RegistrarUsuario - 
+2022-06-04T02:45:57.0595097-05:00:#27: VerificarLogin - 
+2022-06-04T02:45:57.0865092-05:00:#4: Empleado activa paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:ActivarUsuario/Scenario:Empleado+activa+paciente
+2022-06-04T02:45:57.0865092-05:00:#6: Empleado actualiza paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:ActualizarPaciente/Scenario:Empleado+actualiza+paciente
+2022-06-04T02:45:57.0865092-05:00:#8: Empleado busca paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:BuscarPaciente/Scenario:Empleado+busca+paciente
+2022-06-04T02:45:57.0865092-05:00:#10: Empleado desactiva paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:DesactivarUsuario/Scenario:Empleado+desactiva+paciente
+2022-06-04T02:45:57.0865092-05:00:#12: Empleado elimina paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:EliminarPaciente/Scenario:Empleado+elimina+paciente
+2022-06-04T02:45:57.0865092-05:00:#14: Empleado lista pacientes - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:ListarPaciente/Scenario:Empleado+lista+pacientes
+2022-06-04T02:45:57.0865092-05:00:#16: Empleado registra paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:RegistrarPaciente/Scenario:Empleado+registra+paciente
+2022-06-04T02:45:57.0865092-05:00:#18: Administrador busca empleado - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:BuscarEmpleado/Scenario:Administrador+busca+empleado
+2022-06-04T02:45:57.0865092-05:00:#20: Administrador busca Usuario - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:BuscarUsuario/Scenario:Administrador+busca+Usuario
+2022-06-04T02:45:57.0865092-05:00:#22: eliminar usuario exitoso - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:EliminarUsuario/Scenario:eliminar+usuario+exitoso
+2022-06-04T02:45:57.0865092-05:00:#24: Add two numbers - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:IniciarSesion/Scenario:Add+two+numbers
+2022-06-04T02:45:57.0865092-05:00:#26: Admin registra usuario - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:RegistrarUsuario/Scenario:Admin+registra+usuario
+2022-06-04T02:45:57.0865092-05:00:#28: verifiacion de dni exitosa - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:VerificarLogin/Scenario:verifiacion+de+dni+exitosa
+2022-06-04T02:45:57.0865092-05:00:End: Test Suite Dump
+2022-06-04T02:45:57.1045105-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.1055102-05:00:Thread#:Scheduler: testitem #4 from normal test queue 
+2022-06-04T02:45:57.1055102-05:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2022-06-04T02:45:57.1095092-05:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.1095092-05:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.1095092-05:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.1095092-05:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2022-06-04T02:45:57.1095092-05:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2022-06-04T02:45:57.1105082-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.1125091-05:00:Thread #0: creating new test thread executor for UnitTestProjectSistemaDiagnostico, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2022-06-04T02:45:57.1145083-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T02:45:57.1155087-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T02:45:57.1185108-05:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.InProcess.InProcAppDomainTestAssemblyExecutorHost to execute tests
+2022-06-04T02:45:57.2645097-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\LivingDoc.SpecFlowPlugin.dll
+2022-06-04T02:45:57.2695121-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\SpecRun.Runtime.SpecFlowPlugin.dll
+2022-06-04T02:45:57.2715393-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:45:57.2765112-05:00:Thread#0:T:-> Using default config
+2022-06-04T02:45:57.4805101-05:00:Thread#0: Test #4/0 is started on thread #0
+2022-06-04T02:45:57.4985098-05:00:Thread#0:B:Given Selecciono la casilla al lado del dni 74527943
+2022-06-04T02:45:57.5845413-05:00:Thread#0:T:done: ActivarUsuarioSteps.GivenSeleccionoLaCasillaAlLadoDelDni(74527943) (0.0s)
+2022-06-04T02:45:57.5855094-05:00:Thread#0:B:When hago click en el boton activar
+2022-06-04T02:45:57.8005394-05:00:Thread#0:T:done: ActivarUsuarioSteps.WhenHagoClickEnElBotonActivar() (0.2s)
+2022-06-04T02:45:57.8005394-05:00:Thread#0:B:Then se un mensaje de confirmacion "Correcto"
+2022-06-04T02:45:57.8055441-05:00:Thread#0:T:done: ActivarUsuarioSteps.ThenSeUnMensajeDeConfirmacion("Correcto") (0.0s)
+2022-06-04T02:45:57.8115102-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.8115102-05:00:Thread#:Scheduler: testitem #6 from normal test queue 
+2022-06-04T02:45:57.8115102-05:00:Thread#0:Scheduler: considering testitem #6 for thread 0
+2022-06-04T02:45:57.8115102-05:00:Thread#0:TestItem#6:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.8115102-05:00:Thread#0:TestItem#6:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.8115102-05:00:Thread#0:TestItem#6:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.8115102-05:00:Thread#0:Scheduler: using testitem #6 for thread 0
+2022-06-04T02:45:57.8115102-05:00:Thread#0:Scheduler: Test #6 is scheduled for thread
+2022-06-04T02:45:57.8115102-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.8215399-05:00:Thread#0: Test #4/0 is finished on thread #0 as Succeeded within 0.3400306 seconds
+2022-06-04T02:45:57.8225106-05:00:Thread#0: Test #6/0 is started on thread #0
+2022-06-04T02:45:57.8245109-05:00:Thread#0:B:Given hace doble click en un pacinete listado
+2022-06-04T02:45:57.8245109-05:00:Thread#0:T:done: ActualizarPacienteSteps.GivenHaceDobleClickEnUnPacineteListado() (0.0s)
+2022-06-04T02:45:57.8255088-05:00:Thread#0:B:And modifica algunos de los datos del paciente "dni", "nombre", "apellido", "F", "direccion", "celular", "I"
+2022-06-04T02:45:57.8255088-05:00:Thread#0:T:done: ActualizarPacienteSteps.GivenModificaAlgunosDeLosDatosDelPaciente("dni", "nombre", "apellido", "F", "direccion", "celular", "I") (0.0s)
+2022-06-04T02:45:57.8255088-05:00:Thread#0:B:When presiona el boton actualizar
+2022-06-04T02:45:57.8325100-05:00:Thread#0:T:done: ActualizarPacienteSteps.WhenPresionaElBotonActualizar() (0.0s)
+2022-06-04T02:45:57.8325100-05:00:Thread#0:B:Then Visualiza un ventana con un mensaje
+2022-06-04T02:45:57.8325100-05:00:Thread#0:T:done: ActualizarPacienteSteps.ThenVisualizaUnVentanaConUnMensaje() (0.0s)
+2022-06-04T02:45:57.8335096-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.8335096-05:00:Thread#:Scheduler: testitem #8 from normal test queue 
+2022-06-04T02:45:57.8335096-05:00:Thread#0:Scheduler: considering testitem #8 for thread 0
+2022-06-04T02:45:57.8335096-05:00:Thread#0:TestItem#8:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.8335096-05:00:Thread#0:TestItem#8:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.8335096-05:00:Thread#0:TestItem#8:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.8335096-05:00:Thread#0:Scheduler: using testitem #8 for thread 0
+2022-06-04T02:45:57.8335096-05:00:Thread#0:Scheduler: Test #8 is scheduled for thread
+2022-06-04T02:45:57.8335096-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.8335096-05:00:Thread#0: Test #6/0 is finished on thread #0 as Succeeded within 0.010999 seconds
+2022-06-04T02:45:57.8335096-05:00:Thread#0: Test #8/0 is started on thread #0
+2022-06-04T02:45:57.8355398-05:00:Thread#0:B:Given he escrito los digitos 7452
+2022-06-04T02:45:57.8355398-05:00:Thread#0:T:done: BuscarPacienteSteps.GivenHeEscritoLosDigitos("7452") (0.0s)
+2022-06-04T02:45:57.8355398-05:00:Thread#0:B:When hago clic en el botón de búsqueda
+2022-06-04T02:45:57.9325406-05:00:Thread#0:T:done: BuscarPacienteSteps.WhenHagoClicEnElBotonDeBusqueda() (0.1s)
+2022-06-04T02:45:57.9365396-05:00:Thread#0:B:Then Debería ver los pacientes a los que su dni coincidan con los digitos ingresados
+2022-06-04T02:45:57.9365396-05:00:Thread#0:B:  --- table step argument ---
+2022-06-04T02:45:57.9365396-05:00:Thread#0:B:  | Dni      | Nombre | Apellido | Estado |
+2022-06-04T02:45:57.9365396-05:00:Thread#0:B:  | 74527943 | lucas  | mendez   | A      |
+2022-06-04T02:45:57.9405117-05:00:Thread#0:T:done: BuscarPacienteSteps.ThenDeberiaVerLosPacientesALosQueSuDniCoincidanConLosDigitosIngresados(<table>) (0.0s)
+2022-06-04T02:45:57.9415098-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.9415098-05:00:Thread#:Scheduler: testitem #10 from normal test queue 
+2022-06-04T02:45:57.9415098-05:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2022-06-04T02:45:57.9415098-05:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.9415098-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.9415098-05:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.9415098-05:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2022-06-04T02:45:57.9415098-05:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2022-06-04T02:45:57.9415098-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.9415098-05:00:Thread#0: Test #8/0 is finished on thread #0 as Succeeded within 0.1080002 seconds
+2022-06-04T02:45:57.9415098-05:00:Thread#0: Test #10/0 is started on thread #0
+2022-06-04T02:45:57.9435108-05:00:Thread#0:B:Given selecciona la casilla al lado del dni 74527943
+2022-06-04T02:45:57.9435108-05:00:Thread#0:T:done: DesactivarUsuarioSteps.GivenSeleccionaLaCasillaAlLadoDelDni(74527943) (0.0s)
+2022-06-04T02:45:57.9445106-05:00:Thread#0:B:When haga click en el boton desactivar
+2022-06-04T02:45:57.9475112-05:00:Thread#0:T:done: DesactivarUsuarioSteps.WhenHagaClickEnElBotonDesactivar() (0.0s)
+2022-06-04T02:45:57.9475112-05:00:Thread#0:B:Then se visualiza un mensaje con la palabra "Correcto"
+2022-06-04T02:45:57.9485104-05:00:Thread#0:T:done: DesactivarUsuarioSteps.ThenSeVisualizaUnMensajeConLaPalabra("Correcto") (0.0s)
+2022-06-04T02:45:57.9485104-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.9485104-05:00:Thread#:Scheduler: testitem #12 from normal test queue 
+2022-06-04T02:45:57.9485104-05:00:Thread#0:Scheduler: considering testitem #12 for thread 0
+2022-06-04T02:45:57.9485104-05:00:Thread#0:TestItem#12:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.9485104-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.9485104-05:00:Thread#0:TestItem#12:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.9485104-05:00:Thread#0:Scheduler: using testitem #12 for thread 0
+2022-06-04T02:45:57.9485104-05:00:Thread#0:Scheduler: Test #12 is scheduled for thread
+2022-06-04T02:45:57.9485104-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.9485104-05:00:Thread#0: Test #10/0 is finished on thread #0 as Succeeded within 0.0070006 seconds
+2022-06-04T02:45:57.9495113-05:00:Thread#0: Test #12/0 is started on thread #0
+2022-06-04T02:45:57.9505100-05:00:Thread#0:B:Given selecciono la casilla al lado del dni 74527943
+2022-06-04T02:45:57.9505100-05:00:Thread#0:T:done: EliminarPacienteSteps.GivenSeleccionoLaCasillaAlLadoDelDni("74527943") (0.0s)
+2022-06-04T02:45:57.9505100-05:00:Thread#0:B:When hago click en el boton eliminar
+2022-06-04T02:45:57.9555430-05:00:Thread#0:T:done: EliminarPacienteSteps.WhenHagoClickEnElBotonEliminar() (0.0s)
+2022-06-04T02:45:57.9555430-05:00:Thread#0:B:Then Se visualiza un mensaje con la palabra "Correcto"
+2022-06-04T02:45:57.9565106-05:00:Thread#0:T:done: EliminarPacienteSteps.ThenSeVisualizaUnMensajeConLaPalabra("Correcto") (0.0s)
+2022-06-04T02:45:57.9565106-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.9565106-05:00:Thread#:Scheduler: testitem #14 from normal test queue 
+2022-06-04T02:45:57.9565106-05:00:Thread#0:Scheduler: considering testitem #14 for thread 0
+2022-06-04T02:45:57.9565106-05:00:Thread#0:TestItem#14:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.9565106-05:00:Thread#0:TestItem#14:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.9565106-05:00:Thread#0:TestItem#14:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.9565106-05:00:Thread#0:Scheduler: using testitem #14 for thread 0
+2022-06-04T02:45:57.9565106-05:00:Thread#0:Scheduler: Test #14 is scheduled for thread
+2022-06-04T02:45:57.9565106-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.9575119-05:00:Thread#0: Test #12/0 is finished on thread #0 as Succeeded within 0.0080006 seconds
+2022-06-04T02:45:57.9575119-05:00:Thread#0: Test #14/0 is started on thread #0
+2022-06-04T02:45:57.9585110-05:00:Thread#0:B:Given ingresa a la opcion paciente
+2022-06-04T02:45:57.9595106-05:00:Thread#0:T:done: ListarPacienteSteps.GivenIngresaALaOpcionPaciente() (0.0s)
+2022-06-04T02:45:57.9595106-05:00:Thread#0:B:When hace click en la pestaña listar pacientes
+2022-06-04T02:45:57.9615436-05:00:Thread#0:T:done: ListarPacienteSteps.WhenHaceClickEnLaPestanaListarPacientes() (0.0s)
+2022-06-04T02:45:57.9615436-05:00:Thread#0:B:Then Debería ver todos los pacientes registrados
+2022-06-04T02:45:57.9625422-05:00:Thread#0:T:done: ListarPacienteSteps.ThenDeberiaVerTodosLosPacientesRegistrados() (0.0s)
+2022-06-04T02:45:57.9625422-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.9625422-05:00:Thread#:Scheduler: testitem #16 from normal test queue 
+2022-06-04T02:45:57.9625422-05:00:Thread#0:Scheduler: considering testitem #16 for thread 0
+2022-06-04T02:45:57.9625422-05:00:Thread#0:TestItem#16:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.9625422-05:00:Thread#0:TestItem#16:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.9625422-05:00:Thread#0:TestItem#16:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.9625422-05:00:Thread#0:Scheduler: using testitem #16 for thread 0
+2022-06-04T02:45:57.9625422-05:00:Thread#0:Scheduler: Test #16 is scheduled for thread
+2022-06-04T02:45:57.9625422-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.9625422-05:00:Thread#0: Test #14/0 is finished on thread #0 as Succeeded within 0.0050303 seconds
+2022-06-04T02:45:57.9635163-05:00:Thread#0: Test #16/0 is started on thread #0
+2022-06-04T02:45:57.9645111-05:00:Thread#0:B:Given selecciona la pestaña mantenimiento
+2022-06-04T02:45:57.9645111-05:00:Thread#0:T:done: RegistrarPacienteSteps.GivenSeleccionaLaPestanaMantenimiento() (0.0s)
+2022-06-04T02:45:57.9645111-05:00:Thread#0:B:And ingresa los datos del paciente "74527943", "lucas", "mendez", "masculino", "direccion", "123456789", "Activo"
+2022-06-04T02:45:57.9655091-05:00:Thread#0:T:done: RegistrarPacienteSteps.GivenIngresaLosDatosDelPaciente("74527943", "lucas", "mendez", "masculino", "direccion", "123456789", "Activo") (0.0s)
+2022-06-04T02:45:57.9655091-05:00:Thread#0:B:When presiona el boton insertar
+2022-06-04T02:45:57.9685104-05:00:Thread#0:T:done: RegistrarPacienteSteps.WhenPresionaElBotonInsertar() (0.0s)
+2022-06-04T02:45:57.9695105-05:00:Thread#0:B:Then visualiza una ventana con un mensaje
+2022-06-04T02:45:57.9695105-05:00:Thread#0:T:done: RegistrarPacienteSteps.ThenVisualizaUnaVentanaConUnMensaje() (0.0s)
+2022-06-04T02:45:57.9695105-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.9695105-05:00:Thread#:Scheduler: testitem #18 from normal test queue 
+2022-06-04T02:45:57.9695105-05:00:Thread#0:Scheduler: considering testitem #18 for thread 0
+2022-06-04T02:45:57.9695105-05:00:Thread#0:TestItem#18:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.9695105-05:00:Thread#0:TestItem#18:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.9695105-05:00:Thread#0:TestItem#18:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.9695105-05:00:Thread#0:Scheduler: using testitem #18 for thread 0
+2022-06-04T02:45:57.9695105-05:00:Thread#0:Scheduler: Test #18 is scheduled for thread
+2022-06-04T02:45:57.9695105-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.9775097-05:00:Thread#0: Test #16/0 is finished on thread #0 as Succeeded within 0.0139934 seconds
+2022-06-04T02:45:57.9785098-05:00:Thread#0: Test #18/0 is started on thread #0
+2022-06-04T02:45:57.9805105-05:00:Thread#0:B:Given He escrito los digitos 7120
+2022-06-04T02:45:57.9805105-05:00:Thread#0:T:done: BuscarEmpleadoSteps.GivenHeEscritoLosDigitos("7120") (0.0s)
+2022-06-04T02:45:57.9805105-05:00:Thread#0:B:When Hago clic en el botón de búsqueda
+2022-06-04T02:45:57.9835115-05:00:Thread#0:T:done: BuscarEmpleadoSteps.WhenHagoClicEnElBotonDeBusqueda() (0.0s)
+2022-06-04T02:45:57.9845104-05:00:Thread#0:B:Then Debería ver los empleados a los que sus dni coincidan con los digitos ingresados
+2022-06-04T02:45:57.9845104-05:00:Thread#0:B:  --- table step argument ---
+2022-06-04T02:45:57.9845104-05:00:Thread#0:B:  | Dni      | Nombre | Apellido | Cargo         |
+2022-06-04T02:45:57.9845104-05:00:Thread#0:B:  | 71203043 | jose   | mendoza  | Administrador |
+2022-06-04T02:45:57.9845104-05:00:Thread#0:T:done: BuscarEmpleadoSteps.ThenDeberiaVerLosEmpleadosALosQueSusDniCoincidanConLosDigitosIngresados(<table>) (0.0s)
+2022-06-04T02:45:57.9855100-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.9855100-05:00:Thread#:Scheduler: testitem #20 from normal test queue 
+2022-06-04T02:45:57.9855100-05:00:Thread#0:Scheduler: considering testitem #20 for thread 0
+2022-06-04T02:45:57.9855100-05:00:Thread#0:TestItem#20:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.9855100-05:00:Thread#0:TestItem#20:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.9855100-05:00:Thread#0:TestItem#20:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.9855100-05:00:Thread#0:Scheduler: using testitem #20 for thread 0
+2022-06-04T02:45:57.9855100-05:00:Thread#0:Scheduler: Test #20 is scheduled for thread
+2022-06-04T02:45:57.9855100-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.9855100-05:00:Thread#0: Test #18/0 is finished on thread #0 as Succeeded within 0.0070002 seconds
+2022-06-04T02:45:57.9855100-05:00:Thread#0: Test #20/0 is started on thread #0
+2022-06-04T02:45:57.9875097-05:00:Thread#0:B:Given se digita 7032 en el buscador
+2022-06-04T02:45:57.9875097-05:00:Thread#0:T:done: BuscarUsuarioSteps.GivenSeDigitaEnElBuscador("7032") (0.0s)
+2022-06-04T02:45:57.9885097-05:00:Thread#0:B:When Hago click en el botón de búsqueda
+2022-06-04T02:45:57.9925099-05:00:Thread#0:T:done: BuscarUsuarioSteps.WhenHagoClickEnElBotonDeBusqueda() (0.0s)
+2022-06-04T02:45:57.9925099-05:00:Thread#0:B:Then Debería ver los Usuarios a los que sus dni coincidan con los digitos ingresados
+2022-06-04T02:45:57.9925099-05:00:Thread#0:B:  --- table step argument ---
+2022-06-04T02:45:57.9925099-05:00:Thread#0:B:  | Codigo   | Dni    | Usuario  | Clave |
+2022-06-04T02:45:57.9925099-05:00:Thread#0:B:  | 70323854 | daniel | gonzalez | 1234  |
+2022-06-04T02:45:57.9935107-05:00:Thread#0:T:done: BuscarUsuarioSteps.ThenDeberiaVerLosUsuariosALosQueSusDniCoincidanConLosDigitosIngresados(<table>) (0.0s)
+2022-06-04T02:45:57.9935107-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:57.9935107-05:00:Thread#:Scheduler: testitem #22 from normal test queue 
+2022-06-04T02:45:57.9935107-05:00:Thread#0:Scheduler: considering testitem #22 for thread 0
+2022-06-04T02:45:57.9935107-05:00:Thread#0:TestItem#22:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:57.9935107-05:00:Thread#0:TestItem#22:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:57.9935107-05:00:Thread#0:TestItem#22:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:57.9935107-05:00:Thread#0:Scheduler: using testitem #22 for thread 0
+2022-06-04T02:45:57.9935107-05:00:Thread#0:Scheduler: Test #22 is scheduled for thread
+2022-06-04T02:45:57.9935107-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:57.9945093-05:00:Thread#0: Test #20/0 is finished on thread #0 as Succeeded within 0.0089993 seconds
+2022-06-04T02:45:57.9945093-05:00:Thread#0: Test #22/0 is started on thread #0
+2022-06-04T02:45:57.9955085-05:00:Thread#0:B:Given se selecciona el usuario con el codigo 1004
+2022-06-04T02:45:57.9965099-05:00:Thread#0:T:done: EliminarUsuarioSteps.GivenSeSeleccionaElUsuarioConElCodigo(1004) (0.0s)
+2022-06-04T02:45:57.9965099-05:00:Thread#0:B:When se ejecuta el metodo eliminar
+2022-06-04T02:45:57.9995099-05:00:Thread#0:T:done: EliminarUsuarioSteps.WhenSeEjecutaElMetodoEliminar() (0.0s)
+2022-06-04T02:45:57.9995099-05:00:Thread#0:B:Then se eliminara el usuario y regresara un mensaje
+2022-06-04T02:45:58.0005101-05:00:Thread#0:T:done: EliminarUsuarioSteps.ThenSeEliminaraElUsuarioYRegresaraUnMensaje() (0.0s)
+2022-06-04T02:45:58.0005101-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:58.0005101-05:00:Thread#:Scheduler: testitem #24 from normal test queue 
+2022-06-04T02:45:58.0005101-05:00:Thread#0:Scheduler: considering testitem #24 for thread 0
+2022-06-04T02:45:58.0005101-05:00:Thread#0:TestItem#24:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:58.0005101-05:00:Thread#0:TestItem#24:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:58.0005101-05:00:Thread#0:TestItem#24:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:58.0005101-05:00:Thread#0:Scheduler: using testitem #24 for thread 0
+2022-06-04T02:45:58.0005101-05:00:Thread#0:Scheduler: Test #24 is scheduled for thread
+2022-06-04T02:45:58.0005101-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:58.0005101-05:00:Thread#0: Test #22/0 is finished on thread #0 as Succeeded within 0.0060008 seconds
+2022-06-04T02:45:58.0005101-05:00:Thread#0: Test #24/0 is started on thread #0
+2022-06-04T02:45:58.0025087-05:00:Thread#0:B:Given se digita el usuario "daniel" con clave "1234"
+2022-06-04T02:45:58.0025087-05:00:Thread#0:T:done: IniciarSesionSteps.GivenSeDigitaElUsuarioConClave("daniel", "1234") (0.0s)
+2022-06-04T02:45:58.0025087-05:00:Thread#0:B:When Hago click en el botón ingresar
+2022-06-04T02:45:58.0055095-05:00:Thread#0:T:done: IniciarSesionSteps.WhenHagoClickEnElBotonIngresar() (0.0s)
+2022-06-04T02:45:58.0055095-05:00:Thread#0:B:Then Debería buscar en la base de datos y confirmasr su existencia
+2022-06-04T02:45:58.0055095-05:00:Thread#0:B:  --- table step argument ---
+2022-06-04T02:45:58.0055095-05:00:Thread#0:B:  | Usuario | Clave |
+2022-06-04T02:45:58.0055095-05:00:Thread#0:B:  | daniel  | 1234  |
+2022-06-04T02:45:58.0065097-05:00:Thread#0:T:done: IniciarSesionSteps.ThenDeberiaBuscarEnLaBaseDeDatosYConfirmasrSuExistencia(<table>) (0.0s)
+2022-06-04T02:45:58.0065097-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:58.0065097-05:00:Thread#:Scheduler: testitem #26 from normal test queue 
+2022-06-04T02:45:58.0065097-05:00:Thread#0:Scheduler: considering testitem #26 for thread 0
+2022-06-04T02:45:58.0065097-05:00:Thread#0:TestItem#26:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:58.0065097-05:00:Thread#0:TestItem#26:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:58.0065097-05:00:Thread#0:TestItem#26:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:58.0065097-05:00:Thread#0:Scheduler: using testitem #26 for thread 0
+2022-06-04T02:45:58.0065097-05:00:Thread#0:Scheduler: Test #26 is scheduled for thread
+2022-06-04T02:45:58.0065097-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:58.0075095-05:00:Thread#0: Test #24/0 is finished on thread #0 as Succeeded within 0.0069994 seconds
+2022-06-04T02:45:58.0075095-05:00:Thread#0: Test #26/0 is started on thread #0
+2022-06-04T02:45:58.0085098-05:00:Thread#0:B:Given selecciona la pestaña usuario
+2022-06-04T02:45:58.0095097-05:00:Thread#0:T:done: RegistrarUsuarioSteps.GivenSeleccionaLaPestanaUsuario() (0.0s)
+2022-06-04T02:45:58.0095097-05:00:Thread#0:B:And ingresa los datos del usuario "1234", "Lozano", "1234", "A"
+2022-06-04T02:45:58.0095097-05:00:Thread#0:T:done: RegistrarUsuarioSteps.GivenIngresaLosDatosDelUsuario("1234", "Lozano", "1234", "A") (0.0s)
+2022-06-04T02:45:58.0105108-05:00:Thread#0:B:When se presiona el boton insertar
+2022-06-04T02:45:58.0145104-05:00:Thread#0:T:done: RegistrarUsuarioSteps.WhenSePresionaElBotonInsertar() (0.0s)
+2022-06-04T02:45:58.0145104-05:00:Thread#0:B:Then se registra y se visualiza una ventana con un mensaje
+2022-06-04T02:45:58.0145104-05:00:Thread#0:T:done: RegistrarUsuarioSteps.ThenSeRegistraYSeVisualizaUnaVentanaConUnMensaje() (0.0s)
+2022-06-04T02:45:58.0145104-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:58.0145104-05:00:Thread#:Scheduler: testitem #28 from normal test queue 
+2022-06-04T02:45:58.0145104-05:00:Thread#0:Scheduler: considering testitem #28 for thread 0
+2022-06-04T02:45:58.0145104-05:00:Thread#0:TestItem#28:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:45:58.0145104-05:00:Thread#0:TestItem#28:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:45:58.0145104-05:00:Thread#0:TestItem#28:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:45:58.0145104-05:00:Thread#0:Scheduler: using testitem #28 for thread 0
+2022-06-04T02:45:58.0145104-05:00:Thread#0:Scheduler: Test #28 is scheduled for thread
+2022-06-04T02:45:58.0145104-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:45:58.0155106-05:00:Thread#0: Test #26/0 is finished on thread #0 as Succeeded within 0.0080011 seconds
+2022-06-04T02:45:58.0155106-05:00:Thread#0: Test #28/0 is started on thread #0
+2022-06-04T02:45:58.0165111-05:00:Thread#0:B:Given El dni del usuario es 70323854
+2022-06-04T02:45:58.0175109-05:00:Thread#0:T:done: VerificarLoginSteps.GivenElDniDelUsuarioEs("70323854") (0.0s)
+2022-06-04T02:45:58.0175109-05:00:Thread#0:B:When hagla click en diagnostico
+2022-06-04T02:45:58.0195103-05:00:Thread#0:T:done: VerificarLoginSteps.WhenHaglaClickEnDiagnostico() (0.0s)
+2022-06-04T02:45:58.0195103-05:00:Thread#0:B:Then se deberia confirmar DNI
+2022-06-04T02:45:58.0205084-05:00:Thread#0:T:done: VerificarLoginSteps.ThenSeDeberiaConfirmarDNI() (0.0s)
+2022-06-04T02:45:58.0205084-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:45:58.0205084-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T02:45:58.0205084-05:00:Thread#0:Scheduler: enumerator for thread is at end
+2022-06-04T02:45:58.0205084-05:00:Thread#0:Scheduler: No more tests for thread
+2022-06-04T02:45:58.0205084-05:00:Thread#0: Test #28/0 is finished on thread #0 as Succeeded within 0.0049978 seconds
+2022-06-04T02:45:58.0315091-05:00:Thread#0:T:-> LivingDocPlugin: Output generated in: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\TestExecution.json
+2022-06-04T02:45:58.8117510-05:00:Trying to cancel thread
+2022-06-04T02:45:58.8117510-05:00:Thread cancelled
+2022-06-04T02:45:58.8167497-05:00:Thread#-1:Scheduler: get next test for thread -1
+2022-06-04T02:45:58.8167497-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T02:45:58.8167497-05:00:Thread#-1:Scheduler: enumerator for thread is at end
+2022-06-04T02:45:58.8177497-05:00;Thread#13;Info;test run finished
+2022-06-04T02:45:58.8177497-05:00;Thread#13;Info;publishing test results
+2022-06-04T02:45:58.8217803-05:00;Thread#13;Info;test results published
+2022-06-04T02:45:58.8217803-05:00;Thread#13;Info;generating reports
+2022-06-04T02:45:58.9118190-05:00;Thread#13;Info;Starting external report generation process
+2022-06-04T02:46:00.0654800-05:00;Thread#13;Info;Successfully generated reports.
+2022-06-04T02:46:00.0674783-05:00;Thread#13;Info;Successfully generated reports
+2022-06-04T02:46:00.0744795-05:00:Total: 13
+2022-06-04T02:46:00.0764775-05:00:Succeeded: 13
+2022-06-04T02:46:00.0764775-05:00:Ignored: 0
+2022-06-04T02:46:00.0764775-05:00:Pending: 0
+2022-06-04T02:46:00.0764775-05:00:Skipped: 0
+2022-06-04T02:46:00.0774783-05:00:Failed: 0
+2022-06-04T02:46:00.0864767-05:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2022-06-04T02:46:00.0874788-05:00;VSTestExecutionThread;Info;adding Test Execution Report 'D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T024556.html'
+========== End of log file ==========

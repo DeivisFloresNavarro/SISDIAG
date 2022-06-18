@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Unnamed project Test Execution Report</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript">
+            /**
+            * jQuery.fn.sortElements
+            * --------------
+            * #author James Padolsey (http://james.padolsey.com)
+            * #version 0.11
+            * #updated 18-MAR-2010
+            * #url https://raw.github.com/jamespadolsey/jQuery-Plugins/master/sortElements/jquery.sortElements.js
+            * --------------
+            * #param Function comparator:
+            *   Exactly the same behaviour as [1,2,3].sort(comparator)
+            *   
+            * #param Function getSortable
+            *   A function that should return the element that is
+            *   to be sorted. The comparator will run on the
+            *   current collection, but you may want the actual
+            *   resulting sort to occur on a parent or another
+            *   associated element.
+            *   
+            *   E.g. $('td').sortElements(comparator, function(){
+            *      return this.parentNode; 
+            *   })
+            *   
+            *   The <td>'s parent (<tr>) will be sorted instead
+            *   of the <td> itself.
+            */
+            jQuery.fn.sortElements = (function () {
+
+                var sort = [].sort;
+
+                return function (comparator, getSortable) {
+
+                    getSortable = getSortable || function () { return this; };
+
+                    var placements = this.map(function () {
+
+                        var sortElement = getSortable.call(this),
+                parentNode = sortElement.parentNode,
+
+                        // Since the element itself will change position, we have
+                        // to have some way of storing it's original position in
+                        // the DOM. The easiest way is to have a 'flag' node:
+                nextSibling = parentNode.insertBefore(
+                    document.createTextNode(''),
+                    sortElement.nextSibling
+                );
+
+                        return function () {
+
+                            if (parentNode === this) {
+                                throw new Error(
+                        "You can't sort elements if any one is a descendant of another."
+                    );
+                            }
+
+                            // Insert before flag:
+                            parentNode.insertBefore(this, nextSibling);
+                            // Remove flag:
+                            parentNode.removeChild(nextSibling);
+
+                        };
+
+                    });
+
+                    return sort.call(this, comparator).each(function (i) {
+                        placements[i].call(getSortable.call(this));
+                    });
+
+                };
+
+            })();
+        </script>
+        <script type="text/javascript">
+            jQuery.fn.setBarSizes = (function () {
+                return function (metricName, maxBarSize, min) {
+                    var max = Math.max.apply(Math, $.makeArray($(this).map(function () { return Number($(this).attr('data-sr-' + metricName)); })));
+                    var scale = 1.0;
+                    while (max > 0.0 && max <= 10.0) {
+                        scale = scale * 10.0;
+                        max = max * 10.0;
+                    }
+                    max = (Math.ceil(max / 2) * 2) / scale;
+
+                    this.each(function () {
+                        var barAnchor = $(this).find('a');
+                        var actual = $(this).attr('data-sr-' + metricName);
+                        var newHeight = Math.max(Math.round(maxBarSize * (actual - min) / (max - min)), 2);
+                        barAnchor.css({ height: newHeight });
+                    });
+
+                    var unit = "";
+                    if (metricName.substr(metricName.length - 4, 4) === "time")
+                        unit = "s";
+
+                    $('#testview .scale-min-label').each(function () {
+                        $(this).text(min.toString() + unit);
+                    });
+                    $('#testview .scale-max-label').each(function () {
+                        $(this).text(max.toString() + unit);
+                    });
+                    var mid = max / 2;
+                    $('#testview .scale-mid-label').each(function () {
+                        $(this).text(mid.toString() + unit);
+                    });
+                };
+            })();
+
+            function getComparer(metricName, isDesc) {
+                return function (a, b) {
+                    var aNumber = Number($(a).attr('data-sr-' + metricName));
+                    var bNumber = Number($(b).attr('data-sr-' + metricName));
+                    var result = aNumber > bNumber ? 1 : (aNumber < bNumber ? -1 : 0);
+                    if (isDesc)
+                        result = -1 * result;
+
+                    if (result == 0 && metricName != "order")
+                        result = getComparer("order", false)(a, b);
+
+                    return result;
+                };
+            }
+
+            var currentSort = "";
+            function doSort(allowToggleDesc) {
+                var newSort = $("input[name='barSortOrder']:checked").val();
+                if (allowToggleDesc && currentSort == newSort) {
+                    $('#barSortDesc').click();
+                    doSort(false);
+                    return;
+                }
+                currentSort = newSort;
+                $('#testview td.testview-item').sortElements(getComparer(newSort, $('#barSortDesc').is(':checked')));
+            }
+
+
+            function doSetHeights(allowSort) {
+                var selectedMetric = $("input[name='barHeight']:checked").val();
+                $('#testview td.testview-item').setBarSizes(selectedMetric, 60, 0.0);
+
+                if (allowSort && currentSort != selectedMetric) {
+                    var $radios = $("input[name='barSortOrder']");
+                    $radios.filter('[value=' + selectedMetric + ']').attr('checked', true);
+                    $("#barSortDesc").attr("checked", [true]);
+                    doSort(false);
+                }
+            }
+
+            $(document).ready(function () {
+                $("input[name='barSortOrder']").click(function () { doSort(true); return true; });
+                $("input[name='barSortDesc']").change(function () { doSort(false); });
+                $("input[name='barHeight']").change(function () { doSetHeights(true); });
+
+                doSort(false);
+                doSetHeights(false);
+
+                $("div.scrollable").css({ 'overflow': 'auto' });
+            });
+        </script>
+
+        <style type="text/css">
+            body 
+            {
+                color: #000000;
+                font-family: Arial,Liberation Sans,DejaVu Sans,sans-serif;
+                line-height: 130%;
+            }
+            h1 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 170%;
+                font-weight: bold;
+            }            
+            h2 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 130%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            h3 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 120%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            a.bar
+            {
+                text-decoration: none;
+                display: block;
+                line-height: 1px;
+            }
+            .description
+            {
+                font-style: italic;
+            }
+            .log 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                display: block;
+                margin: 0px;
+            }
+            .errorMessage 
+            {
+                width: 600px;
+                color: Red;
+                font-weight: bold;
+            }
+            .stackTrace 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                font-style: italic;
+                color: Red;
+                display: block;
+            }
+            table.testEvents
+            {
+                border: solid 1px #e8eef4;
+                border-collapse: collapse;
+            }
+            table.testEvents td
+            {
+                vertical-align: top;
+                padding: 5px;
+                border: solid 1px #e8eef4;
+            }
+            table.testEvents th
+            {
+                padding: 6px 5px;
+                text-align: left;
+                background-color: #e8eef4;
+                border: solid 1px #e8eef4;                
+            }
+            .comment
+            {
+                font-style: italic;
+                font-size: smaller;
+            }
+            .startupBar
+            {
+                background-color: #EEEEEE;
+                cursor: default;
+            }
+            
+            .colorSucceeded
+            {
+                background-color: #90ED7B;
+            }
+            .colorIgnored
+            {
+                background-color: #FFFF85;
+            }
+            .colorPending
+            {
+                background-color: #D47BED;
+            }
+            .colorNothingToRun
+            {
+                background-color: #CCCCFF;
+            }
+            .colorSkipped
+            {
+                background-color: #CCCCFF;
+            }
+            .colorInconclusive
+            {
+                background-color: #7BEDED;
+            }
+            .colorCleanupFailed
+            {
+                background-color: #FFCCCC;
+            }
+            .colorRandomlyFailed
+            {
+                background-color: #EDB07B;
+            }
+            .colorFailed
+            {
+                background-color: #ED5F5F;
+            }
+            .colorInitializationFailed
+            {
+                background-color: #FF0000;
+            }
+            .colorFrameworkError
+            {
+                background-color: #FF0000;
+            }
+            ul.subNodeLinks
+            {
+                padding-left: 20px;
+                margin: 0px;
+            }
+            ul.subNodeLinks li
+            {
+                list-style: none;
+            }
+            
+            /* views general */
+            div.scrollable
+            {
+                /*overflow: auto; - thsi has to be set from js, because of an IE9 bug */
+            }
+            div.viewbox
+            {
+                position: relative;
+                border: 3px solid #e8eef4;
+            }
+            div.viewbox table
+            {
+                border: 0px;
+            }
+                        
+            /* testview */
+            #testview
+            {
+                padding-top: 23px;
+            }
+            
+            table.testview-items td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 1px;
+            }
+            td.right-padding, td.left-padding
+            {
+                width: 25px;
+                min-width: 25px;
+            }
+            table.testview-items a.bar
+            {
+                width: 5px;
+            }
+            table.testview-items tr.testview-items-row
+            {
+                height: 60px;
+            }
+            
+            /* scale */
+            table.vertical-scale 
+            {
+                position: absolute;
+                top: 23px;
+                left: 0px;
+                width: 100%;
+                z-index: -100;
+            }
+            table.vertical-scale td, tr.horizontal-scale td
+            {
+                font-size: 60%;
+                line-height: normal;
+            }
+            table.vertical-scale tr.scale-max, table.vertical-scale tr.scale-mid 
+            {
+                height: 30px;
+            }
+            tr.horizontal-scale, table.vertical-scale tr.scale-min 
+            {
+                height: 12px;
+            }
+            
+            td.scale-max-label, td.scale-mid-label, td.scale-min-label
+            {
+                border-top: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: top;
+            }
+            td.scale-10-label
+            {
+                border-left: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: bottom;
+                padding-left: 1px;
+            }
+            tr.scale-mid td, tr.scale-min td, tr.scale-max td
+            {
+                border-top: solid 1px #E6E6E6;
+            }
+           
+            
+            /* bar-control */
+            #bar-control
+            {
+                font-size: 60%;
+                line-height: normal;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+            #bar-control label
+            {
+                font-weight: bold;
+                vertical-align: middle;
+            }
+            #bar-control .option
+            {
+                vertical-align: middle;
+                text-transform: lowercase;
+            }
+            #bar-control input[type="checkbox"]
+            {
+                padding: 0 2px 0 3px;
+            }
+            #bar-control input
+            {
+                vertical-align: top;
+                height: 12px;
+                margin: 0px;
+                padding: 0px;
+            }
+            #bar-control div
+            {
+                float: right;
+                margin: 3px 5px 3px 5px;
+            }
+
+            /* timeline view */
+            #timelineview
+            {
+                padding-top: 5px;
+            }
+            table.timelineview a
+            {
+                height: 20px;
+            }
+            table.timelineview td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 0px;
+                border: 0px;
+            }
+            tr.thread-items-row
+            {
+                height: 25px;
+            }
+            tr.thread-items-row td
+            {
+                vertical-align: bottom;
+            }
+            td.thread-label
+            {
+                padding: 0px 6px 0px 6px;
+                text-align: right;
+                line-height: 18px;
+                vertical-align: bottom;
+            }
+            th.thread-label
+            {
+                padding: 3px 6px 0px 6px;
+                line-height: 18px;
+                text-align: left;
+                vertical-align: bottom;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Unnamed project Test Execution Report</h1>
+        
+    <ul>
+        <li>Project: Unnamed project</li>
+        <li>Configuration: </li>
+        <li>Test Assemblies: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll</li>
+        <li>Start Time: 4/6/2022 00:31:21</li>
+        <li>Duration: 00:00:03.0007526</li>
+        <li>Test Threads: 1</li>
+    </ul>
+
+
+        <h2>Result: 3 failed</h2>
+        <table class="testEvents">
+                <tr>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <td>
+            25%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 17px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 54px;" 
+           title="3 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 126px;" 
+           title="7 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>11 (test executions: 15)</td>
+    <td>1</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>7</td>
+
+        </table>
+        
+        <h2>Test Timeline Summary</h2>
+
+        <div id="timelineview" class="viewbox">
+            <div class="scrollable">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th class="thread-label" colspan="2">thread</th>
+                    </tr>
+                        <tr class="thread-items-row">
+                            <td class="thread-label" title="Machine: DESKTOP-839CFT0">#0</td>
+                            <td colspan="2">
+                                <table class="timelineview" cellpadding="0" cellspacing="0">
+                                    <tr>
+
+                                            <td>
+        <a
+            class="bar startupBar" 
+            style="width: 10px;" 
+                title="test thread startup" 
+        >&nbsp;</a>
+    </td>
+
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 29px;" 
+                title="Empleado activa paciente (in ActivarUsuario)" 
+                href="#t1140919330.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Empleado activa paciente (in ActivarUsuario) retry #1" 
+                href="#t1140919330.1"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Empleado activa paciente (in ActivarUsuario) retry #2" 
+                href="#t1140919330.2"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 3px;" 
+                title="Empleado actualiza paciente (in ActualizarPaciente)" 
+                href="#t-2104227409.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Empleado busca paciente (in BuscarPaciente)" 
+                href="#t-2097291333.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Empleado busca paciente (in BuscarPaciente) retry #1" 
+                href="#t-2097291333.1"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Empleado busca paciente (in BuscarPaciente) retry #2" 
+                href="#t-2097291333.2"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Empleado desactiva paciente (in DesactivarUsuario)" 
+                href="#t399607848.0"
+        >&nbsp;</a>
+    </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="horizontal-scale">
+                        <td>&nbsp;</td>
+                            <td class="scale-10-label" style="width: 70px;min-width: 70px;">0s</td>
+                        <td class="scale-10-label">2s</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+    <h2>Test Result View</h2>
+    <div id="testview" class="viewbox">
+        <div id="bar-control">
+            <div id="bar-control-sort">
+                <label>sort by:</label>
+                <span class="option"><input type="radio" name="barSortOrder" value="exectime" />Time</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="acttime" />Act Time</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="order" />Execution</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="rescode" checked="checked" />Result</span>
+                <span class="option"><input type="checkbox" name="barSortDesc" id="barSortDesc" checked="checked" />desc</span>
+            </div>
+            <div id="bar-control-heights">
+                <label>heights:</label>
+                <span class="option"><input type="radio" checked="checked" name="barHeight" value="exectime" />Time</span>
+                <span class="option"><input type="radio" name="barHeight" value="acttime" />Act Time</span>
+            </div>
+        </div>
+        <table class="vertical-scale" cellpadding="0" cellspacing="0">
+            <tr class="scale-max">
+                <td class="left-padding scale-max-label">&nbsp;</td>
+                <td colspan="15">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+            <tr class="scale-mid">
+                <td class="left-padding scale-mid-label">&nbsp;</td>
+                <td colspan="15">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+            <tr class="scale-min">
+                <td class="left-padding scale-min-label">&nbsp;</td>
+                <td colspan="15">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+        </table>
+        <div class="scrollable">
+            <table class="testview-items" cellpadding="0" cellspacing="0">
+                <tr class="testview-items-row">
+                    <td class="left-padding">&nbsp;</td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0405367" data-sr-rescode="110" data-sr-order="3" data-sr-acttime="0.037">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 5px;"
+            title="Empleado actualiza paciente (in ActualizarPaciente)"
+            href="#t-2104227409.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="420" data-sr-order="8" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Empleado elimina paciente (in EliminarPaciente)"
+            href="#t867111285.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="420" data-sr-order="9" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Empleado lista pacientes (in ListarPaciente)"
+            href="#t-1810440984.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="420" data-sr-order="10" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Empleado registra paciente (in RegistrarPaciente)"
+            href="#t-1484598453.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="420" data-sr-order="11" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Administrador busca empleado (in BuscarEmpleado)"
+            href="#t-141690113.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="420" data-sr-order="12" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Administrador busca Usuario (in BuscarUsuario)"
+            href="#t-1592387961.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="420" data-sr-order="13" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Add two numbers (in IniciarSesion)"
+            href="#t1611530161.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="420" data-sr-order="14" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="verifiacion de dni exitosa (in VerificarLogin)"
+            href="#t-777584592.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.4999995" data-sr-rescode="540" data-sr-order="0" data-sr-acttime="0.23">
+        <a
+            class="bar colorFailed" 
+            style="height: 60px;"
+            title="Empleado activa paciente (in ActivarUsuario)"
+            href="#t1140919330.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0050004" data-sr-rescode="540" data-sr-order="1" data-sr-acttime="0.002">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Empleado activa paciente (in ActivarUsuario) retry #1"
+            href="#t1140919330.1">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0030303" data-sr-rescode="540" data-sr-order="2" data-sr-acttime="0.0">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Empleado activa paciente (in ActivarUsuario) retry #2"
+            href="#t1140919330.2">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.1050018" data-sr-rescode="540" data-sr-order="4" data-sr-acttime="0.097">
+        <a
+            class="bar colorFailed" 
+            style="height: 13px;"
+            title="Empleado busca paciente (in BuscarPaciente)"
+            href="#t-2097291333.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0040307" data-sr-rescode="540" data-sr-order="5" data-sr-acttime="0.001">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Empleado busca paciente (in BuscarPaciente) retry #1"
+            href="#t-2097291333.1">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0020015" data-sr-rescode="540" data-sr-order="6" data-sr-acttime="0.001">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Empleado busca paciente (in BuscarPaciente) retry #2"
+            href="#t-2097291333.2">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0040012" data-sr-rescode="540" data-sr-order="7" data-sr-acttime="0.001">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Empleado desactiva paciente (in DesactivarUsuario)"
+            href="#t399607848.0">&nbsp;</a>
+    </td>
+                    <td class="right-padding">&nbsp;</td>
+                </tr>
+                <tr class="horizontal-scale">
+                    <td class="left-padding">&nbsp;</td>
+                    <td colspan="10">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+        
+        
+    <h2>Feature Summary</h2>
+    <table class="testEvents">
+            <tr>
+            <th>Feature</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+
+            <tr>
+                <td><a href="#f43256648">ActivarUsuario</a></td>
+                    <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.5080302</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f-127685287">ActualizarPaciente</a></td>
+                    <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0405367</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f-1302650719">BuscarEmpleado</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f1190432135">BuscarPaciente</a></td>
+                    <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1110340</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f1290585900">BuscarUsuario</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f-675179472">DesactivarUsuario</a></td>
+                    <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 199px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0040012</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f1535024268">EliminarPaciente</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f378403100">IniciarSesion</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f-1944421984">ListarPaciente</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f336479088">RegistrarPaciente</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f264628066">VerificarLogin</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+            </tr>
+    </table>
+
+
+        <a name="error_summary" />
+        <h2>Error Summary</h2>
+        <table class="testEvents">
+                <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <tr>
+                    <td>
+                        <a href="#t1140919330.0">Empleado activa paciente (in UnitTestProjectSistemaDiagnostico, ActivarUsuario)</a>
+                            <a href="#t1140919330.1">retry #1</a>
+                            <a href="#t1140919330.2">retry #2</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#t-2097291333.0">Empleado busca paciente (in UnitTestProjectSistemaDiagnostico, BuscarPaciente)</a>
+                            <a href="#t-2097291333.1">retry #1</a>
+                            <a href="#t-2097291333.2">retry #2</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. </div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#t399607848.0">Empleado desactiva paciente (in UnitTestProjectSistemaDiagnostico, DesactivarUsuario)</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 199px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </div></td>
+                </tr>
+        </table>
+
+        <h2>Scenario Summary</h2>
+            <a name="f43256648" />
+            <h3>Feature: ActivarUsuario</h3>
+                <div class="description"><pre>	Testear la funcionalidad de activar pacientes</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t1140919330.0">Scenario: Empleado activa paciente</a>
+            <a href="#t1140919330.1">retry #1</a>
+            <a href="#t1140919330.2">retry #2</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.5080302</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f-127685287" />
+            <h3>Feature: ActualizarPaciente</h3>
+                <div class="description"><pre>	Testear la funcionalidad de actualizar pacientes</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-2104227409.0">Scenario: Empleado actualiza paciente</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0405367</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f-1302650719" />
+            <h3>Feature: BuscarEmpleado</h3>
+                <div class="description"><pre>	Testear la funcionalidad de b&#250;squeda de empleados</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-141690113.0">Scenario: Administrador busca empleado</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f1190432135" />
+            <h3>Feature: BuscarPaciente</h3>
+                <div class="description"><pre>	Testear la funcionalidad de b&#250;squeda de pacientes</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-2097291333.0">Scenario: Empleado busca paciente</a>
+            <a href="#t-2097291333.1">retry #1</a>
+            <a href="#t-2097291333.2">retry #2</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1110340</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f1290585900" />
+            <h3>Feature: BuscarUsuario</h3>
+                <div class="description"><pre>	Administrador busca Usuario</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-1592387961.0">Scenario: Administrador busca Usuario</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f-675179472" />
+            <h3>Feature: DesactivarUsuario</h3>
+                <div class="description"><pre>	Testear la funcionalidad desactivar pacientes</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t399607848.0">Scenario: Empleado desactiva paciente</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 199px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0040012</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f1535024268" />
+            <h3>Feature: EliminarPaciente</h3>
+                <div class="description"><pre>	Testear la funcionalidad de eliminar paciente</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t867111285.0">Scenario: Empleado elimina paciente</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f378403100" />
+            <h3>Feature: IniciarSesion</h3>
+                <div class="description"><pre>	Iniciar Sesion del sistema</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t1611530161.0">Scenario: Add two numbers</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f-1944421984" />
+            <h3>Feature: ListarPaciente</h3>
+                <div class="description"><pre>	Testear la funcionalidad de listar de pacientes</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-1810440984.0">Scenario: Empleado lista pacientes</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f336479088" />
+            <h3>Feature: RegistrarPaciente</h3>
+                <div class="description"><pre>	Testear la funcionalidad de registrar pacientes</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-1484598453.0">Scenario: Empleado registra paciente</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f264628066" />
+            <h3>Feature: VerificarLogin</h3>
+                <div class="description"><pre>	COnfirmar Dni a travezde login</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-777584592.0">Scenario: verifiacion de dni exitosa</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00</td>
+
+                        
+                    </tr>
+            </table>
+
+        <h2>Execution Details</h2>
+            <a name="t1140919330.0" />
+            <h3>Scenario: Empleado activa paciente (in UnitTestProjectSistemaDiagnostico, ActivarUsuario)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/6/2022 00:31:21</li>
+                <li>Execution time (sec): 0.4999995</li>
+                <li>Thread: #0</li>
+                <li>Error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Selecciono la casilla al lado del dni 74527943</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado activa paciente] -->
+                            <pre class="log">done: ActivarUsuarioSteps.GivenSeleccionoLaCasillaAlLadoDelDni(74527943) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.107s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When hago click en el boton activar</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado activa paciente] -->
+                            <pre class="log">done: ActivarUsuarioSteps.WhenHagoClickEnElBotonActivar() (0.2s)</pre>
+                        </td>
+                        <td>Succeeded in 0.23s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then se un mensaje de confirmacion &quot;Correcto&quot;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado activa paciente] -->
+                            <pre class="log">error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;.  (0.1s)</pre>
+                                <div class="errorMessage">Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </div>
+                                <pre class="stackTrace">Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. 
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual)
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioSteps.ThenSeUnMensajeDeConfirmacion(String p0) en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\ActivarUsuarioSteps.cs:l&#237;nea 30
+   en lambda_method(Closure , IContextManager , String )
+   en TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:l&#237;nea 73
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 581
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 494
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 210
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   en TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() en D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:l&#237;nea 59
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioFeature.ScenarioCleanup()
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioFeature.EmpleadoActivaPaciente() en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\ActivarUsuario.feature:l&#237;nea 8
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.142s</td>
+                    </tr>
+            </table>
+            <a name="t1140919330.1" />
+            <h3>Scenario: Empleado activa paciente (in UnitTestProjectSistemaDiagnostico, ActivarUsuario) retry #1</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/6/2022 00:31:22</li>
+                <li>Execution time (sec): 0.0050004</li>
+                <li>Thread: #0</li>
+                <li>Error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Selecciono la casilla al lado del dni 74527943</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado activa paciente] -->
+                            <pre class="log">done: ActivarUsuarioSteps.GivenSeleccionoLaCasillaAlLadoDelDni(74527943) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When hago click en el boton activar</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado activa paciente] -->
+                            <pre class="log">done: ActivarUsuarioSteps.WhenHagoClickEnElBotonActivar() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then se un mensaje de confirmacion &quot;Correcto&quot;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado activa paciente] -->
+                            <pre class="log">error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;.  (0.0s)</pre>
+                                <div class="errorMessage">Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </div>
+                                <pre class="stackTrace">Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. 
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual)
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioSteps.ThenSeUnMensajeDeConfirmacion(String p0) en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\ActivarUsuarioSteps.cs:l&#237;nea 30
+   en lambda_method(Closure , IContextManager , String )
+   en TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:l&#237;nea 73
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 581
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 494
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 210
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   en TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() en D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:l&#237;nea 59
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioFeature.ScenarioCleanup()
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioFeature.EmpleadoActivaPaciente() en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\ActivarUsuario.feature:l&#237;nea 8
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.001s</td>
+                    </tr>
+            </table>
+            <a name="t1140919330.2" />
+            <h3>Scenario: Empleado activa paciente (in UnitTestProjectSistemaDiagnostico, ActivarUsuario) retry #2</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/6/2022 00:31:22</li>
+                <li>Execution time (sec): 0.0030303</li>
+                <li>Thread: #0</li>
+                <li>Error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Selecciono la casilla al lado del dni 74527943</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado activa paciente] -->
+                            <pre class="log">done: ActivarUsuarioSteps.GivenSeleccionoLaCasillaAlLadoDelDni(74527943) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When hago click en el boton activar</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado activa paciente] -->
+                            <pre class="log">done: ActivarUsuarioSteps.WhenHagoClickEnElBotonActivar() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then se un mensaje de confirmacion &quot;Correcto&quot;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado activa paciente] -->
+                            <pre class="log">error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;.  (0.0s)</pre>
+                                <div class="errorMessage">Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </div>
+                                <pre class="stackTrace">Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. 
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual)
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioSteps.ThenSeUnMensajeDeConfirmacion(String p0) en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\ActivarUsuarioSteps.cs:l&#237;nea 30
+   en lambda_method(Closure , IContextManager , String )
+   en TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:l&#237;nea 73
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 581
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 494
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 210
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   en TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() en D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:l&#237;nea 59
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioFeature.ScenarioCleanup()
+   en UnitTestProjectSistemaDiagnostico.ActivarUsuarioFeature.EmpleadoActivaPaciente() en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\ActivarUsuario.feature:l&#237;nea 8
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.001s</td>
+                    </tr>
+            </table>
+            <a name="t-2104227409.0" />
+            <h3>Scenario: Empleado actualiza paciente (in UnitTestProjectSistemaDiagnostico, ActualizarPaciente)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 4/6/2022 00:31:22</li>
+                <li>Execution time (sec): 0.0405367</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given hace doble click en un pacinete listado</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado actualiza paciente] -->
+                            <pre class="log">done: ActualizarPacienteSteps.GivenHaceDobleClickEnUnPacineteListado() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And modifica algunos de los datos del paciente &quot;dni&quot;, &quot;nombre&quot;, &quot;apellido&quot;, &quot;F&quot;, &quot;direccion&quot;, &quot;celular&quot;, &quot;I&quot;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado actualiza paciente] -->
+                            <pre class="log">done: ActualizarPacienteSteps.GivenModificaAlgunosDeLosDatosDelPaciente(&quot;dni&quot;, &quot;nombre&quot;, &quot;apellido&quot;, &quot;F&quot;, &quot;direccion&quot;, &quot;celular&quot;, &quot;I&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When presiona el boton actualizar</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado actualiza paciente] -->
+                            <pre class="log">done: ActualizarPacienteSteps.WhenPresionaElBotonActualizar() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.037s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Visualiza un ventana con un mensaje</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado actualiza paciente] -->
+                            <pre class="log">done: ActualizarPacienteSteps.ThenVisualizaUnVentanaConUnMensaje() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+            </table>
+            <a name="t-2097291333.0" />
+            <h3>Scenario: Empleado busca paciente (in UnitTestProjectSistemaDiagnostico, BuscarPaciente)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/6/2022 00:31:22</li>
+                <li>Execution time (sec): 0.1050018</li>
+                <li>Thread: #0</li>
+                <li>Error: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. </li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given he escrito los digitos 7452</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado busca paciente] -->
+                            <pre class="log">done: BuscarPacienteSteps.GivenHeEscritoLosDigitos(&quot;7452&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When hago clic en el bot&#243;n de b&#250;squeda</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado busca paciente] -->
+                            <pre class="log">done: BuscarPacienteSteps.WhenHagoClicEnElBotonDeBusqueda() (0.1s)</pre>
+                        </td>
+                        <td>Succeeded in 0.097s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Deber&#237;a ver los pacientes a los que su dni coincidan con los digitos ingresados
+  --- table step argument ---
+  | Dni      | Nombre | Apellido | Estado |
+  | 74527943 | lucas  | mendez   | A      |</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado busca paciente] -->
+                            <pre class="log">error: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;.  (0.0s)</pre>
+                                <div class="errorMessage">Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. </div>
+                                <pre class="stackTrace">Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. 
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual)
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteSteps.ThenDeberiaVerLosPacientesALosQueSuDniCoincidanConLosDigitosIngresados(Table table) en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\BuscarPacienteSteps.cs:l&#237;nea 36
+   en lambda_method(Closure , IContextManager , Table )
+   en TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:l&#237;nea 73
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 581
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 494
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 210
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   en TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() en D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:l&#237;nea 59
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteFeature.ScenarioCleanup()
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteFeature.EmpleadoBuscaPaciente() en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\BuscarPaciente.feature:l&#237;nea 8
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.005s</td>
+                    </tr>
+            </table>
+            <a name="t-2097291333.1" />
+            <h3>Scenario: Empleado busca paciente (in UnitTestProjectSistemaDiagnostico, BuscarPaciente) retry #1</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/6/2022 00:31:22</li>
+                <li>Execution time (sec): 0.0040307</li>
+                <li>Thread: #0</li>
+                <li>Error: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. </li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given he escrito los digitos 7452</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado busca paciente] -->
+                            <pre class="log">done: BuscarPacienteSteps.GivenHeEscritoLosDigitos(&quot;7452&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When hago clic en el bot&#243;n de b&#250;squeda</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado busca paciente] -->
+                            <pre class="log">done: BuscarPacienteSteps.WhenHagoClicEnElBotonDeBusqueda() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Deber&#237;a ver los pacientes a los que su dni coincidan con los digitos ingresados
+  --- table step argument ---
+  | Dni      | Nombre | Apellido | Estado |
+  | 74527943 | lucas  | mendez   | A      |</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado busca paciente] -->
+                            <pre class="log">error: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;.  (0.0s)</pre>
+                                <div class="errorMessage">Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. </div>
+                                <pre class="stackTrace">Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. 
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual)
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteSteps.ThenDeberiaVerLosPacientesALosQueSuDniCoincidanConLosDigitosIngresados(Table table) en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\BuscarPacienteSteps.cs:l&#237;nea 36
+   en lambda_method(Closure , IContextManager , Table )
+   en TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:l&#237;nea 73
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 581
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 494
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 210
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   en TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() en D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:l&#237;nea 59
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteFeature.ScenarioCleanup()
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteFeature.EmpleadoBuscaPaciente() en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\BuscarPaciente.feature:l&#237;nea 8
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.001s</td>
+                    </tr>
+            </table>
+            <a name="t-2097291333.2" />
+            <h3>Scenario: Empleado busca paciente (in UnitTestProjectSistemaDiagnostico, BuscarPaciente) retry #2</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/6/2022 00:31:22</li>
+                <li>Execution time (sec): 0.0020015</li>
+                <li>Thread: #0</li>
+                <li>Error: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. </li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given he escrito los digitos 7452</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado busca paciente] -->
+                            <pre class="log">done: BuscarPacienteSteps.GivenHeEscritoLosDigitos(&quot;7452&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When hago clic en el bot&#243;n de b&#250;squeda</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado busca paciente] -->
+                            <pre class="log">done: BuscarPacienteSteps.WhenHagoClicEnElBotonDeBusqueda() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Deber&#237;a ver los pacientes a los que su dni coincidan con los digitos ingresados
+  --- table step argument ---
+  | Dni      | Nombre | Apellido | Estado |
+  | 74527943 | lucas  | mendez   | A      |</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado busca paciente] -->
+                            <pre class="log">error: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;.  (0.0s)</pre>
+                                <div class="errorMessage">Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. </div>
+                                <pre class="stackTrace">Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException: Error de Assert.AreEqual. Se esperaba &lt;0&gt;, pero es &lt;1&gt;. 
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual)
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteSteps.ThenDeberiaVerLosPacientesALosQueSuDniCoincidanConLosDigitosIngresados(Table table) en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\BuscarPacienteSteps.cs:l&#237;nea 36
+   en lambda_method(Closure , IContextManager , Table )
+   en TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:l&#237;nea 73
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 581
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 494
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 210
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   en TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() en D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:l&#237;nea 59
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteFeature.ScenarioCleanup()
+   en UnitTestProjectSistemaDiagnostico.BuscarPacienteFeature.EmpleadoBuscaPaciente() en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\BuscarPaciente.feature:l&#237;nea 8
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.001s</td>
+                    </tr>
+            </table>
+            <a name="t399607848.0" />
+            <h3>Scenario: Empleado desactiva paciente (in UnitTestProjectSistemaDiagnostico, DesactivarUsuario)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/6/2022 00:31:22</li>
+                <li>Execution time (sec): 0.0040012</li>
+                <li>Thread: #0</li>
+                <li>Error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given selecciona la casilla al lado del dni 74527943</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Empleado desactiva paciente] -->
+                            <pre class="log">done: DesactivarUsuarioSteps.GivenSeleccionaLaCasillaAlLadoDelDni(74527943) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When haga click en el boton desactivar</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Empleado desactiva paciente] -->
+                            <pre class="log">done: DesactivarUsuarioSteps.WhenHagaClickEnElBotonDesactivar() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then se visualiza un mensaje con la palabra &quot;Correcto&quot;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Empleado desactiva paciente] -->
+                            <pre class="log">error: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;.  (0.0s)</pre>
+                                <div class="errorMessage">Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. </div>
+                                <pre class="stackTrace">Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException: Error de Assert.AreEqual. Se esperaba &lt;No se puede activar el registro&gt;, pero es &lt;Correcto&gt;. 
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual, String message, Object[] parameters)
+   en Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual[T](T expected, T actual)
+   en UnitTestProjectSistemaDiagnostico.DesactivarUsuarioSteps.ThenSeVisualizaUnMensajeConLaPalabra(String p0) en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\DesactivarUsuarioSteps.cs:l&#237;nea 31
+   en lambda_method(Closure , IContextManager , String )
+   en TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:l&#237;nea 73
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 581
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 494
+   en TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() en D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:l&#237;nea 210
+   en TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   en TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() en D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:l&#237;nea 59
+   en UnitTestProjectSistemaDiagnostico.DesactivarUsuarioFeature.ScenarioCleanup()
+   en UnitTestProjectSistemaDiagnostico.DesactivarUsuarioFeature.EmpleadoDesactivaPaciente() en D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\DesactivarUsuario.feature:l&#237;nea 8
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   en TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t867111285.0" />
+            <h3>Scenario: Empleado elimina paciente (in UnitTestProjectSistemaDiagnostico, EliminarPaciente)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/6/2022 00:31:24</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-1810440984.0" />
+            <h3>Scenario: Empleado lista pacientes (in UnitTestProjectSistemaDiagnostico, ListarPaciente)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/6/2022 00:31:24</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-1484598453.0" />
+            <h3>Scenario: Empleado registra paciente (in UnitTestProjectSistemaDiagnostico, RegistrarPaciente)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/6/2022 00:31:24</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-141690113.0" />
+            <h3>Scenario: Administrador busca empleado (in UnitTestProjectSistemaDiagnostico, BuscarEmpleado)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/6/2022 00:31:24</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-1592387961.0" />
+            <h3>Scenario: Administrador busca Usuario (in UnitTestProjectSistemaDiagnostico, BuscarUsuario)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/6/2022 00:31:24</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t1611530161.0" />
+            <h3>Scenario: Add two numbers (in UnitTestProjectSistemaDiagnostico, IniciarSesion)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/6/2022 00:31:24</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-777584592.0" />
+            <h3>Scenario: verifiacion de dni exitosa (in UnitTestProjectSistemaDiagnostico, VerificarLogin)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/6/2022 00:31:24</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+	</body>
+</html>

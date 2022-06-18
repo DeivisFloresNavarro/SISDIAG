@@ -1,9 +1,10 @@
 ﻿Feature: IniciarSesion
-	Simple calculator for adding two numbers
+	Iniciar Sesion del sistema
 
 @mytag
 Scenario: Add two numbers
-	Given the first number is 50
-	And the second number is 70
-	When the two numbers are added
-	Then the result should be 120
+	Given se digita el usuario "daniel" con clave "1234"
+	When Hago click en el botón ingresar
+	Then Debería buscar en la base de datos y confirmasr su existencia
+		|Usuario	| Clave |
+		| daniel	|1234	|

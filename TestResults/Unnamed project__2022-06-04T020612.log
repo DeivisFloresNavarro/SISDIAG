@@ -1,0 +1,73 @@
+﻿2022-06-04T02:06:12.9091414-05:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2022-06-04T02:06:12.9091414-05:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.9.31 in Framework clr40 in x86 mode execution started
+2022-06-04T02:06:12.9091414-05:00;VSTestExecutionThread;Info;TestAdapter Location: D:\Proyecto\SistemaDiagnostico\packages\SpecRun.Runner.3.9.31\tools\net461\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2022-06-04T02:06:12.9101418-05:00;VSTestExecutionThread;Info;Current UserName: 'Usuario', MachineName: 'DESKTOP-839CFT0'
+2022-06-04T02:06:12.9491112-05:00;VSTestExecutionThread;Info;SpecRun: running tests in D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:06:12.9491112-05:00;VSTestExecutionThread;Info;Output folder configured to "D:\Proyecto\SistemaDiagnostico\TestResults" (default)
+2022-06-04T02:06:12.9491112-05:00;VSTestExecutionThread;Info;Profile: 
+2022-06-04T02:06:12.9891409-05:00;VSTestExecutionThread;Info;Log file path: D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T020612.log
+2022-06-04T02:06:12.9941418-05:00;Thread#13;Info;Checking activation
+2022-06-04T02:06:13.0491120-05:00;Thread#13;Info;Activated.
+2022-06-04T02:06:13.0511125-05:00;Thread#13;Info;Activation check completed
+2022-06-04T02:06:13.0511125-05:00;Thread#13;Info;Starting test run
+2022-06-04T02:06:13.0831114-05:00;Thread#13;Info;Discovering target: Default
+2022-06-04T02:06:13.0841111-05:00;Thread#13;Info;Discovering tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:06:13.3431110-05:00;Thread#13;Info;Discovered tests from assembly: D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:06:13.3441119-05:00:Test Suite Dump
+2022-06-04T02:06:13.3451119-05:00:#0: Unnamed project/ - 
+2022-06-04T02:06:13.3451119-05:00:#1: Default - 
+2022-06-04T02:06:13.3451119-05:00:#2: UnitTestProjectSistemaDiagnostico - 
+2022-06-04T02:06:13.3451119-05:00:#15: RegistrarPaciente - 
+2022-06-04T02:06:13.3731107-05:00:#16: Empleado registra paciente - TestAssembly:UnitTestProjectSistemaDiagnostico/Feature:RegistrarPaciente/Scenario:Empleado+registra+paciente
+2022-06-04T02:06:13.3731107-05:00:End: Test Suite Dump
+2022-06-04T02:06:13.3891108-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:06:13.3911111-05:00:Thread#:Scheduler: testitem #16 from normal test queue 
+2022-06-04T02:06:13.3911111-05:00:Thread#0:Scheduler: considering testitem #16 for thread 0
+2022-06-04T02:06:13.3941114-05:00:Thread#0:TestItem#16:testItemMatchesCurrentTestThread:UnSpecific
+2022-06-04T02:06:13.3941114-05:00:Thread#0:TestItem#16:runsOnOneOtherThreadSpecific:False
+2022-06-04T02:06:13.3941114-05:00:Thread#0:TestItem#16:runsOnOneOtherThreadUnspecific:False
+2022-06-04T02:06:13.3941114-05:00:Thread#0:Scheduler: using testitem #16 for thread 0
+2022-06-04T02:06:13.3951107-05:00:Thread#0:Scheduler: Test #16 is scheduled for thread
+2022-06-04T02:06:13.3961105-05:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-06-04T02:06:13.3981115-05:00:Thread #0: creating new test thread executor for UnitTestProjectSistemaDiagnostico, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2022-06-04T02:06:13.3991111-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T02:06:13.4011116-05:00:Thread #0: Creating test assembly executor for execution model AppDomain
+2022-06-04T02:06:13.4021116-05:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.InProcess.InProcAppDomainTestAssemblyExecutorHost to execute tests
+2022-06-04T02:06:13.5451122-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\SpecRun.Runtime.SpecFlowPlugin.dll
+2022-06-04T02:06:13.5481118-05:00:Thread#0:T:-> Loading plugin D:\Proyecto\SistemaDiagnostico\UnitTestProjectSistemaDiagnostico\bin\Debug\UnitTestProjectSistemaDiagnostico.dll
+2022-06-04T02:06:13.5501118-05:00:Thread#0:T:-> Using default config
+2022-06-04T02:06:13.7451128-05:00:Thread#0: Test #16/0 is started on thread #0
+2022-06-04T02:06:13.7611106-05:00:Thread#0:B:Given selecciona la pestaña mantenimiento
+2022-06-04T02:06:13.8421419-05:00:Thread#0:T:done: RegistrarPacienteSteps.GivenSeleccionaLaPestanaMantenimiento() (0.0s)
+2022-06-04T02:06:13.8431113-05:00:Thread#0:B:And ingresa los datos del paciente "74527943", "lucas", "mendez", "masculino", "direccion", "123456789", "Activo"
+2022-06-04T02:06:13.8461109-05:00:Thread#0:T:done: RegistrarPacienteSteps.GivenIngresaLosDatosDelPaciente("74527943", "lucas", "mendez", "masculino", "direccion", "123456789", "Activo") (0.0s)
+2022-06-04T02:06:13.8461109-05:00:Thread#0:B:When presiona el boton insertar
+2022-06-04T02:06:14.0651131-05:00:Thread#0:T:done: RegistrarPacienteSteps.WhenPresionaElBotonInsertar() (0.2s)
+2022-06-04T02:06:14.0651131-05:00:Thread#0:B:Then visualiza una ventana con un mensaje
+2022-06-04T02:06:14.0681116-05:00:Thread#0:T:done: RegistrarPacienteSteps.ThenVisualizaUnaVentanaConUnMensaje() (0.0s)
+2022-06-04T02:06:14.0741109-05:00:Thread#0:Scheduler: get next test for thread 0
+2022-06-04T02:06:14.0741109-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T02:06:14.0741109-05:00:Thread#0:Scheduler: enumerator for thread is at end
+2022-06-04T02:06:14.0741109-05:00:Thread#0:Scheduler: No more tests for thread
+2022-06-04T02:06:14.0831109-05:00:Thread#0: Test #16/0 is finished on thread #0 as Succeeded within 0.3369694 seconds
+2022-06-04T02:06:15.7423774-05:00:Trying to cancel thread
+2022-06-04T02:06:15.7423774-05:00:Thread cancelled
+2022-06-04T02:06:15.7523736-05:00:Thread#-1:Scheduler: get next test for thread -1
+2022-06-04T02:06:15.7523736-05:00:Thread#:Scheduler: at the end of normal test queue
+2022-06-04T02:06:15.7523736-05:00:Thread#-1:Scheduler: enumerator for thread is at end
+2022-06-04T02:06:15.7543751-05:00;Thread#13;Info;test run finished
+2022-06-04T02:06:15.7543751-05:00;Thread#13;Info;publishing test results
+2022-06-04T02:06:15.7593722-05:00;Thread#13;Info;test results published
+2022-06-04T02:06:15.7593722-05:00;Thread#13;Info;generating reports
+2022-06-04T02:06:15.8469287-05:00;Thread#13;Info;Starting external report generation process
+2022-06-04T02:06:16.9209627-05:00;Thread#13;Info;Successfully generated reports.
+2022-06-04T02:06:16.9219296-05:00;Thread#13;Info;Successfully generated reports
+2022-06-04T02:06:16.9279295-05:00:Total: 1
+2022-06-04T02:06:16.9289297-05:00:Succeeded: 1
+2022-06-04T02:06:16.9289297-05:00:Ignored: 0
+2022-06-04T02:06:16.9299296-05:00:Pending: 0
+2022-06-04T02:06:16.9299296-05:00:Skipped: 0
+2022-06-04T02:06:16.9299296-05:00:Failed: 0
+2022-06-04T02:06:16.9379293-05:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2022-06-04T02:06:16.9389297-05:00;VSTestExecutionThread;Info;adding Test Execution Report 'D:\Proyecto\SistemaDiagnostico\TestResults\Unnamed project__2022-06-04T020612.html'
+========== End of log file ==========
