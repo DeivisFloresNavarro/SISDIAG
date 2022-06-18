@@ -33,3 +33,7 @@ steps:
   inputs:
     testResultsFormat: 'VSTest'
     testResultsFiles: '**/TEST-*.xml'
+- task: VisualStudioTestPlatformInstaller@1
+  inputs:
+    packageFeedSelector: 'nugetOrg'
+    versionSelector: 'latestPreRelease'
